@@ -20,33 +20,42 @@ class MinisEditor {
     // --- Auth ---
 
     setupAuth() {
+        // Check if user is authenticated via beyondme_auth cookie
+        const isAuthenticated = this.getCookie('beyondme_auth');
+        if (!isAuthenticated || isAuthenticated !== 'true') {
+            window.location.href = 'https://manage.beyondmebtw.com';
+            return;
+        }
+
+        // Verify we have the auth key
+        const authKey = this.getCookie('beyondme_auth_key');
+        if (!authKey) {
+            window.location.href = 'https://manage.beyondmebtw.com';
+            return;
+        }
+
         const logoutBtn = document.getElementById('logout-btn');
         logoutBtn.addEventListener('click', () => {
-            if (window.authSystem && typeof window.authSystem.logout === 'function') {
-                window.authSystem.logout();
-            }
+            // Clear auth cookies and redirect to login
+            document.cookie = 'beyondme_auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.beyondmebtw.com';
+            document.cookie = 'beyondme_auth_key=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.beyondmebtw.com';
+            window.location.href = 'https://manage.beyondmebtw.com';
         });
+    }
 
-        // Wait for auth system to initialize
-        if (window.authSystem && typeof window.authSystem.init === 'function') {
-            window.authSystem.init();
+    getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (const cookie of cookies) {
+            const [cookieName, ...rest] = cookie.trim().split('=');
+            if (cookieName === name) {
+                return decodeURIComponent(rest.join('='));
+            }
         }
+        return null;
     }
 
     getPassword() {
-        // Try to get from auth system cookie
-        if (window.authSystem && typeof window.authSystem.getKey === 'function') {
-            return window.authSystem.getKey();
-        }
-        // Fallback: check cookies directly
-        const cookies = document.cookie.split(';');
-        for (const cookie of cookies) {
-            const [name, value] = cookie.trim().split('=');
-            if (name === 'authKey' || name === 'managekey') {
-                return decodeURIComponent(value);
-            }
-        }
-        return '';
+        return this.getCookie('beyondme_auth_key') || '';
     }
 
     // --- Tabs ---
