@@ -1,0 +1,303 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import LeftSidebar from '../components/LeftSidebar.astro';
+import RightSidebar from '../components/RightSidebar.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts');
+
+// Compute tag counts for the tag cloud
+const tagCounts = {};
+for (const post of allPosts) {
+    for (const tag of post.data.tags) {
+        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+    }
+}
+---
+
+<BaseLayout title="Minis | BeyondMeBtw">
+    <Header />
+    <div class="main-container">
+        <LeftSidebar />
+        <div class="content-section">
+            <div id="activeFilter" class="active-filter" style="display:none;">
+                <span id="filterLabel"></span>
+                <button class="clear-filter" id="clearFilter">Clear</button>
+            </div>
+            <div id="postsContainer"></div>
+            <div class="loading-container" id="loadingContainer">
+                <div class="loading-spinner" id="loadingSpinner"></div>
+                <button class="load-more-btn" id="loadMoreBtn" style="display:none;">Load More</button>
+                <div class="no-results" id="noResults" style="display:none;">
+                    <h3>No minis found</h3>
+                    <p>Check back soon for new content!</p>
+                </div>
+            </div>
+        </div>
+        <RightSidebar tagCounts={tagCounts} />
+    </div>
+    <Footer />
+</BaseLayout>
+
+<script is:inline>
+(function() {
+    const METADATA_URL = 'https://minis.beyondmebtw.com/content/metadata.json';
+    const POSTS_PER_PAGE = 5;
+
+    let allPosts = [];
+    let filteredPosts = [];
+    let displayedCount = 0;
+    let activeTag = null;
+    let searchQuery = '';
+
+    const postsContainer = document.getElementById('postsContainer');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const noResults = document.getElementById('noResults');
+    const searchInput = document.getElementById('searchInput');
+    const activeFilterEl = document.getElementById('activeFilter');
+    const filterLabel = document.getElementById('filterLabel');
+    const clearFilter = document.getElementById('clearFilter');
+
+    // --- Init ---
+    async function init() {
+        await loadMetadata();
+        readUrlParams();
+        applyFilters();
+        renderPosts();
+        setupSearch();
+        setupTagCloud();
+        setupClearFilter();
+        setupInfiniteScroll();
+    }
+
+    async function loadMetadata() {
+        try {
+            const res = await fetch(METADATA_URL);
+            if (!res.ok) throw new Error('Failed to fetch metadata');
+            allPosts = await res.json();
+        } catch (err) {
+            console.error('Error loading metadata:', err);
+            // Try relative path as fallback
+            try {
+                const res = await fetch('/content/metadata.json');
+                if (res.ok) allPosts = await res.json();
+            } catch (e) { /* ignore */ }
+        }
+        loadingSpinner.style.display = 'none';
+    }
+
+    function readUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('tag')) {
+            activeTag = params.get('tag');
+            var tagBtn = document.querySelector('.tag-cloud-item[data-tag="' + activeTag + '"]');
+            if (tagBtn) tagBtn.classList.add('active');
+        }
+        if (params.has('q')) {
+            searchQuery = params.get('q');
+            if (searchInput) searchInput.value = searchQuery;
+        }
+    }
+
+    // --- Filtering ---
+    function applyFilters() {
+        filteredPosts = allPosts;
+
+        if (activeTag) {
+            filteredPosts = filteredPosts.filter(function(p) {
+                return (p.tags || []).indexOf(activeTag) !== -1;
+            });
+        }
+
+        if (searchQuery) {
+            var q = searchQuery.toLowerCase();
+            filteredPosts = filteredPosts.filter(function(p) {
+                return p.title.toLowerCase().indexOf(q) !== -1 ||
+                    (p.rawMarkdown || '').toLowerCase().indexOf(q) !== -1;
+            });
+        }
+
+        displayedCount = 0;
+        postsContainer.innerHTML = '';
+        updateFilterBanner();
+    }
+
+    function updateFilterBanner() {
+        if (activeTag || searchQuery) {
+            activeFilterEl.style.display = 'flex';
+            var parts = [];
+            if (activeTag) parts.push('Tag: ' + activeTag);
+            if (searchQuery) parts.push('Search: "' + searchQuery + '"');
+            filterLabel.textContent = parts.join(' | ');
+        } else {
+            activeFilterEl.style.display = 'none';
+        }
+    }
+
+    function updateUrl() {
+        var params = new URLSearchParams();
+        if (activeTag) params.set('tag', activeTag);
+        if (searchQuery) params.set('q', searchQuery);
+        var qs = params.toString();
+        var newUrl = qs ? window.location.pathname + '?' + qs : window.location.pathname;
+        history.pushState(null, '', newUrl);
+    }
+
+    // --- Rendering ---
+    function renderPosts() {
+        var start = displayedCount;
+        var end = Math.min(start + POSTS_PER_PAGE, filteredPosts.length);
+
+        if (filteredPosts.length === 0) {
+            noResults.style.display = 'block';
+            loadMoreBtn.style.display = 'none';
+            return;
+        }
+
+        noResults.style.display = 'none';
+
+        var prevDate = start > 0 ? filteredPosts[start - 1].date : null;
+
+        for (var i = start; i < end; i++) {
+            var post = filteredPosts[i];
+            var isSameDate = post.date === prevDate;
+
+            var container = document.createElement('div');
+            container.className = 'mini-post-container' + (isSameDate ? ' same-date' : '');
+            container.setAttribute('data-tags', (post.tags || []).join(','));
+
+            var dateStr = new Date(post.date).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
+
+            var tagsHtml = (post.tags || []).map(function(t) {
+                return '<span class="tag" data-tag="' + escapeHtml(t) + '">' + escapeHtml(t) + '</span>';
+            }).join('');
+
+            container.innerHTML =
+                (!isSameDate ? '<div class="date-tab">' + dateStr + '</div>' : '') +
+                '<div class="mini-post">' +
+                    '<h2 class="mini-post-title">' +
+                        '<a href="/post/' + post.id + '">' + escapeHtml(post.title) + '</a>' +
+                    '</h2>' +
+                    '<div class="mini-post-content">' + (post.content || '') + '</div>' +
+                    '<div class="mini-post-meta">' +
+                        '<span class="time-tag">' + post.time + ' IST</span>' +
+                        tagsHtml +
+                    '</div>' +
+                '</div>';
+
+            postsContainer.appendChild(container);
+
+            if (i < end - 1) {
+                var divider = document.createElement('div');
+                divider.className = 'post-divider' + (isSameDate ? ' reduced' : '');
+                postsContainer.appendChild(divider);
+            }
+
+            prevDate = post.date;
+        }
+
+        displayedCount = end;
+
+        // Attach click handlers to inline tags
+        var tagEls = postsContainer.querySelectorAll('.mini-post-meta .tag');
+        tagEls.forEach(function(tagEl) {
+            tagEl.style.cursor = 'pointer';
+            tagEl.addEventListener('click', function() {
+                setTagFilter(this.getAttribute('data-tag'));
+            });
+        });
+
+        if (displayedCount < filteredPosts.length) {
+            loadMoreBtn.style.display = 'block';
+        } else {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
+
+    // --- Search ---
+    function setupSearch() {
+        if (!searchInput) return;
+        var debounceTimer;
+        searchInput.addEventListener('input', function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function() {
+                searchQuery = searchInput.value.trim();
+                updateUrl();
+                applyFilters();
+                renderPosts();
+            }, 300);
+        });
+    }
+
+    // --- Tag Cloud ---
+    function setupTagCloud() {
+        document.querySelectorAll('.tag-cloud-item').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var tag = this.getAttribute('data-tag');
+                if (activeTag === tag) {
+                    setTagFilter(null);
+                } else {
+                    setTagFilter(tag);
+                }
+            });
+        });
+    }
+
+    function setTagFilter(tag) {
+        activeTag = tag;
+        document.querySelectorAll('.tag-cloud-item').forEach(function(btn) {
+            if (btn.getAttribute('data-tag') === activeTag) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        updateUrl();
+        applyFilters();
+        renderPosts();
+    }
+
+    // --- Clear Filter ---
+    function setupClearFilter() {
+        clearFilter.addEventListener('click', function() {
+            activeTag = null;
+            searchQuery = '';
+            if (searchInput) searchInput.value = '';
+            document.querySelectorAll('.tag-cloud-item').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            updateUrl();
+            applyFilters();
+            renderPosts();
+        });
+    }
+
+    // --- Infinite Scroll ---
+    function setupInfiniteScroll() {
+        loadMoreBtn.addEventListener('click', function() { renderPosts(); });
+
+        var observer = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting && displayedCount < filteredPosts.length) {
+                renderPosts();
+            }
+        }, { rootMargin: '200px' });
+
+        observer.observe(document.getElementById('loadingContainer'));
+    }
+
+    // --- Helpers ---
+    function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    // Start
+    init();
+})();
+</script>

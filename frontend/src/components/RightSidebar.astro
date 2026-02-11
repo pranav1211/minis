@@ -1,0 +1,22 @@
+---
+const { tagCounts } = Astro.props;
+const sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
+---
+
+<aside class="right-sidebar">
+    <div class="search-section">
+        <input type="text" id="searchInput" placeholder="Search minis..." class="search-input" />
+    </div>
+    {sortedTags.length > 0 && (
+        <div class="tag-cloud-section">
+            <h3>Tags</h3>
+            <div class="tag-cloud">
+                {sortedTags.map(([tag, count]) => (
+                    <button class="tag-cloud-item" data-tag={tag}>
+                        {tag} <span class="tag-count">({count})</span>
+                    </button>
+                ))}
+            </div>
+        </div>
+    )}
+</aside>
