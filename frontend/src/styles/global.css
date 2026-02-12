@@ -212,7 +212,7 @@ a:hover {
     color: var(--text-primary);
     padding: 6px 14px;
     border-radius: 15px;
-    font-size: 15px;
+    font-size: 17px;
     font-family: var(--font-primary);
     border: 1px solid rgba(255, 255, 255, 0.3);
     cursor: pointer;
@@ -272,7 +272,7 @@ a:hover {
     color: var(--text-primary);
     padding: 10px 16px;
     border-radius: 10px;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
     font-family: var(--font-primary);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -284,6 +284,20 @@ a:hover {
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
     color: var(--bg-primary);
     text-decoration: none;
+}
+
+.featured-category-item:nth-child(1) {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    color: #3b342d;
+}
+
+.featured-category-item:nth-child(2) {
+    background: linear-gradient(135deg, #9d96dd 0%, #b8b3e4 100%);
+    color: #3b342d;
+}
+.featured-category-item:nth-child(3) {
+    background: linear-gradient(135deg, #a2da75 0%, #daeb9d 100%);
+    color: #3b342d;
 }
 
 /* Content Section */
@@ -314,7 +328,7 @@ a:hover {
 }
 
 .mini-post {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 246, 243, 0.9) 100%);
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 14px;
     padding: 28px;
     border: 1px solid var(--border-light);
@@ -480,8 +494,13 @@ a:hover {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .load-more-btn {
@@ -611,7 +630,8 @@ a:hover {
     color: var(--link-color);
 }
 
-.post-content ul, .post-content ol {
+.post-content ul,
+.post-content ol {
     margin: 1em 0;
     padding-left: 25px;
 }
@@ -812,6 +832,11 @@ a:hover {
     .post-content {
         font-size: 16px;
     }
+
+    .tag-cloud-section {
+        margin-bottom: 50px;
+    }
+
 }
 
 @media (max-width: 480px) {
@@ -859,6 +884,10 @@ a:hover {
     .tag {
         font-size: 13px;
         padding: 3px 10px;
+    }
+
+    .tag-cloud-section {
+        margin-bottom: 50px;
     }
 
     .search-input {
