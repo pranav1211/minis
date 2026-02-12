@@ -3,7 +3,7 @@ id: mini_yfvw15
 title: "January 2026 Review — Getting Started"
 date: "2026-02-03"
 time: "12:05"
-tags: ["blog","life","projects"]
+tags: ["blog","life","projects","month review"]
 ---
 
 Welcome to a new series.  
