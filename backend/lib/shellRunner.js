@@ -1,7 +1,7 @@
 const { exec } = require('child_process');
 const fs = require('fs');
 
-function runShellScript(scriptPath = '/shellfiles/jsonupdatebmb.sh') {
+function runShellScript(scriptPath = '/shellfiles/updateminis.sh') {
     return new Promise((resolve, reject) => {
         if (!fs.existsSync(scriptPath)) {
             console.log(`Shell script not found: ${scriptPath} (skipping)`);
