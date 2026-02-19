@@ -541,15 +541,6 @@ a:hover {
     text-decoration: none;
 }
 
-/* Same-date posts */
-.mini-post-container.same-date {
-    margin-top: -10px;
-}
-
-.mini-post-container.same-date .date-tab {
-    display: none;
-}
-
 /* Post Divider */
 .post-divider {
     height: 1px;

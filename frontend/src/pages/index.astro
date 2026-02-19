@@ -340,26 +340,22 @@ import Footer from '../components/Footer.astro';
 
         noResults.style.display = 'none';
 
-        var prevDate = start > 0 ? filteredPosts[start - 1].date : null;
-
         for (var i = start; i < end; i++) {
             var post = filteredPosts[i];
-            var isSameDate = post.date === prevDate;
 
             var container = document.createElement('div');
-            container.className = 'mini-post-container' + (isSameDate ? ' same-date' : '');
+            container.className = 'mini-post-container';
             container.setAttribute('data-tags', (post.tags || []).join(','));
 
-            var dateStr = new Date(post.date).toLocaleDateString('en-US', {
-                year: 'numeric', month: 'long', day: 'numeric'
-            });
+            var d = new Date(post.date);
+            var dateStr = getOrdinal(d.getDate()) + ' ' + d.toLocaleDateString('en-US', { month: 'long' }) + ', ' + d.getFullYear();
 
             var tagsHtml = (post.tags || []).map(function(t) {
                 return '<span class="tag" data-tag="' + escapeHtml(t) + '">' + escapeHtml(t) + '</span>';
             }).join('');
 
             container.innerHTML =
-                (!isSameDate ? '<div class="date-tab">' + dateStr + '</div>' : '') +
+                '<div class="date-tab">' + dateStr + '</div>' +
                 '<div class="mini-post">' +
                     '<h2 class="mini-post-title">' +
                         '<a href="/post/' + post.id + '">' + escapeHtml(post.title) + '</a>' +
@@ -381,11 +377,9 @@ import Footer from '../components/Footer.astro';
 
             if (i < end - 1) {
                 var divider = document.createElement('div');
-                divider.className = 'post-divider' + (isSameDate ? ' reduced' : '');
+                divider.className = 'post-divider';
                 postsContainer.appendChild(divider);
             }
-
-            prevDate = post.date;
         }
 
         displayedCount = end;
@@ -490,6 +484,12 @@ import Footer from '../components/Footer.astro';
     }
 
     // --- Helpers ---
+    function getOrdinal(n) {
+        var s = ['th', 'st', 'nd', 'rd'];
+        var v = n % 100;
+        return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    }
+
     function escapeHtml(str) {
         var div = document.createElement('div');
         div.textContent = str;
