@@ -3,7 +3,7 @@ id: mini_r4orin
 title: "The Framework Dilemma"
 date: "2026-01-13"
 time: "11:19"
-tags: ["blog","project","experience"]
+tags: ["project","experience"]
 ---
 
 I'm working on a project that involves running a YOLO model on the web using **ONNX Runtime Web**. On paper, it sounded straightforward: load the model, run inference, detect people. In practice, it turned into one of the most educational (and humbling) experiences I’ve had so far.

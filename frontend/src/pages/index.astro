@@ -7,6 +7,9 @@ import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout title="Minis | BeyondMeBtw">
+    <Fragment slot="head">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </Fragment>
     <Header />
     <div class="main-container">
         <LeftSidebar />
@@ -14,6 +17,9 @@ import Footer from '../components/Footer.astro';
             <div id="activeFilter" class="active-filter" style="display:none;">
                 <span id="filterLabel"></span>
                 <button class="clear-filter" id="clearFilter">Clear</button>
+            </div>
+            <div class="collapse-controls">
+                <button class="collapse-toggle-btn" id="collapseToggleBtn">Collapse All</button>
             </div>
             <div id="postsContainer"></div>
             <div class="loading-container" id="loadingContainer">
@@ -28,7 +34,82 @@ import Footer from '../components/Footer.astro';
         <RightSidebar />
     </div>
     <Footer />
+
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 </BaseLayout>
+
+<style>
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #3b342d;
+    color: #F4F2EF;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(100px);
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+    background-color: #5a4c3e;
+    transform: translateY(-5px);
+}
+
+.collapse-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+
+.collapse-toggle-btn {
+    background: none;
+    border: 1px solid var(--text-accent);
+    color: var(--text-accent);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.collapse-toggle-btn:hover {
+    background: var(--text-accent);
+    color: var(--bg-primary);
+}
+
+.read-more-btn {
+    background: none;
+    border: none;
+    color: var(--link-color);
+    font-family: var(--font-primary);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    display: inline;
+}
+
+.read-more-btn:hover {
+    color: var(--text-accent);
+}
+</style>
 
 <script is:inline>
 (function() {
@@ -37,10 +118,12 @@ import Footer from '../components/Footer.astro';
     var POSTS_PER_PAGE = 5;
 
     var allPosts = [];
+    var postsById = {};
     var filteredPosts = [];
     var displayedCount = 0;
     var activeTag = null;
     var searchQuery = '';
+    var isCollapsed = false;
 
     var postsContainer = document.getElementById('postsContainer');
     var loadingSpinner = document.getElementById('loadingSpinner');
@@ -63,6 +146,8 @@ import Footer from '../components/Footer.astro';
         setupTagCloud();
         setupClearFilter();
         setupInfiniteScroll();
+        setupCollapseToggle();
+        setupScrollToTop();
     }
 
     async function loadMetadata() {
@@ -77,6 +162,7 @@ import Footer from '../components/Footer.astro';
                 if (res2.ok) allPosts = await res2.json();
             } catch (e) { /* ignore */ }
         }
+        allPosts.forEach(function(p) { postsById[p.id] = p; });
         loadingSpinner.style.display = 'none';
     }
 
@@ -194,12 +280,9 @@ import Footer from '../components/Footer.astro';
     }
 
     function updateFilterBanner() {
-        if (activeTag || searchQuery) {
+        if (searchQuery) {
             activeFilterEl.style.display = 'flex';
-            var parts = [];
-            if (activeTag) parts.push('Tag: ' + activeTag);
-            if (searchQuery) parts.push('Search: "' + searchQuery + '"');
-            filterLabel.textContent = parts.join(' | ');
+            filterLabel.textContent = 'Search: "' + searchQuery + '"';
         } else {
             activeFilterEl.style.display = 'none';
         }
@@ -212,6 +295,63 @@ import Footer from '../components/Footer.astro';
         var qs = params.toString();
         var newUrl = qs ? window.location.pathname + '?' + qs : window.location.pathname;
         history.pushState(null, '', newUrl);
+    }
+
+    // --- Collapse / Expand ---
+    function getPreview(rawMarkdown) {
+        var plain = (rawMarkdown || '').replace(/[#*_[\]()>`~\-]/g, '').replace(/\n+/g, ' ').trim();
+        var words = plain.split(/\s+/).filter(Boolean);
+        if (words.length <= 40) return plain;
+        return words.slice(0, 40).join(' ') + '...';
+    }
+
+    function expandPostContent(div, postId) {
+        var post = postsById[postId];
+        if (!post) return;
+        div.innerHTML = post.content || '';
+    }
+
+    function collapsePostContent(div, postId) {
+        var post = postsById[postId];
+        if (!post) return;
+        var preview = getPreview(post.rawMarkdown || '');
+        div.innerHTML = escapeHtml(preview) + ' <button class="read-more-btn">Read more &#8595;</button>';
+        div.querySelector('.read-more-btn').addEventListener('click', function() {
+            expandPostContent(div, postId);
+        });
+    }
+
+    function setupCollapseToggle() {
+        var btn = document.getElementById('collapseToggleBtn');
+        if (!btn) return;
+        btn.addEventListener('click', function() {
+            isCollapsed = !isCollapsed;
+            btn.textContent = isCollapsed ? 'Expand All' : 'Collapse All';
+            document.querySelectorAll('.mini-post-content[data-post-id]').forEach(function(div) {
+                var id = div.getAttribute('data-post-id');
+                if (isCollapsed) {
+                    collapsePostContent(div, id);
+                } else {
+                    expandPostContent(div, id);
+                }
+            });
+        });
+    }
+
+    // --- Scroll to Top ---
+    function setupScrollToTop() {
+        var scrollBtn = document.getElementById('scrollToTop');
+        if (!scrollBtn) return;
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+        scrollBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
 
     // --- Rendering ---
@@ -251,7 +391,7 @@ import Footer from '../components/Footer.astro';
                     '<h2 class="mini-post-title">' +
                         '<a href="/post/' + post.id + '">' + escapeHtml(post.title) + '</a>' +
                     '</h2>' +
-                    '<div class="mini-post-content">' + (post.content || '') + '</div>' +
+                    '<div class="mini-post-content" data-post-id="' + post.id + '">' + (post.content || '') + '</div>' +
                     '<div class="mini-post-meta">' +
                         '<span class="time-tag">' + post.time + ' IST</span>' +
                         tagsHtml +
@@ -259,6 +399,12 @@ import Footer from '../components/Footer.astro';
                 '</div>';
 
             postsContainer.appendChild(container);
+
+            // Apply collapsed state to newly rendered post
+            if (isCollapsed) {
+                var contentDiv = container.querySelector('.mini-post-content');
+                collapsePostContent(contentDiv, post.id);
+            }
 
             if (i < end - 1) {
                 var divider = document.createElement('div');
