@@ -2,15 +2,15 @@ const express = require('express');
 const { exec } = require('child_process');
 const crypto = require('crypto');
 
-const scriptPath = '/shellfiles/beyond.sh';
+const scriptPath = '/shellfiles/minis.sh';
 const app = express();
 
 // Middleware to capture raw body for webhook signature verification
-app.use('/bmbg', express.raw({ type: 'application/json' }));
+app.use('/minisg', express.raw({ type: 'application/json' }));
 
 // Function to verify GitHub webhook signature
 function verifyGitHubSignature(payload, signature) {
-  const secret = process.env.beyondmegitkey;
+  const secret = process.env.minisgitkey;
   if (!secret) {
     console.error('GitHub webhook secret not found in environment variables');
     return false;
@@ -64,7 +64,7 @@ app.get('/bmbg', (req, res) => {
 });
 
 // Handle POST requests with GitHub webhook signature verification
-app.post('/bmbg', (req, res) => {
+app.post('/minisg', (req, res) => {
   const signature = req.get('X-Hub-Signature-256');
   
   if (!signature) {
@@ -100,6 +100,6 @@ app.post('/bmbg', (req, res) => {
   });
 });
 
-app.listen(6009, () => {
-  console.log('Server is running on port 6009');
+app.listen(6011, () => {
+  console.log('Server is running on port 6011');
 });
