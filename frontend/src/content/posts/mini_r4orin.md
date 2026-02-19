@@ -1,6 +1,6 @@
 ---
 id: mini_r4orin
-title: "The Framework Dilema"
+title: "The Framework Dilemma"
 date: "2026-01-13"
 time: "11:19"
 tags: ["blog","project","experience"]
