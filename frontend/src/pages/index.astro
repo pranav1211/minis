@@ -67,27 +67,7 @@ import Footer from '../components/Footer.astro';
     transform: translateY(-5px);
 }
 
-.read-more-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
-    color: var(--bg-primary);
-    font-family: var(--font-primary);
-    font-size: 14px;
-    font-weight: 600;
-    padding: 7px 18px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    margin-top: 2px;
-}
 
-.read-more-btn:hover {
-    background: linear-gradient(135deg, var(--text-accent) 0%, #6b5d50 100%);
-    color: var(--bg-primary);
-}
 </style>
 
 <script is:inline>
@@ -308,12 +288,13 @@ import Footer from '../components/Footer.astro';
         btn.addEventListener('click', function() {
             isCollapsed = !isCollapsed;
             var icon = document.getElementById('collapseIcon');
+            var text = document.getElementById('collapseText');
             if (isCollapsed) {
-                if (icon) icon.textContent = '⊞';
-                btn.lastChild.textContent = ' Expand All';
+                if (icon) icon.className = 'fas fa-expand';
+                if (text) text.textContent = 'Expand All';
             } else {
-                if (icon) icon.textContent = '⊟';
-                btn.lastChild.textContent = ' Collapse All';
+                if (icon) icon.className = 'fas fa-compress';
+                if (text) text.textContent = 'Collapse All';
             }
             document.querySelectorAll('.mini-post-content[data-post-id]').forEach(function(div) {
                 var id = div.getAttribute('data-post-id');

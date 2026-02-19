@@ -251,6 +251,29 @@ a:hover {
     background: linear-gradient(135deg, var(--text-accent) 0%, #6b5d50 100%);
 }
 
+/* Read more CTA button (dynamically inserted, must be global) */
+.read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
+    color: var(--bg-primary);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 7px 18px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.read-more-btn:hover {
+    background: linear-gradient(135deg, var(--text-accent) 0%, #6b5d50 100%);
+    color: var(--bg-primary);
+}
+
 .tag-cloud {
     display: flex;
     flex-wrap: wrap;
