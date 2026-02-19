@@ -18,9 +18,6 @@ import Footer from '../components/Footer.astro';
                 <span id="filterLabel"></span>
                 <button class="clear-filter" id="clearFilter">Clear</button>
             </div>
-            <div class="collapse-controls">
-                <button class="collapse-toggle-btn" id="collapseToggleBtn">Collapse All</button>
-            </div>
             <div id="postsContainer"></div>
             <div class="loading-container" id="loadingContainer">
                 <div class="loading-spinner" id="loadingSpinner"></div>
@@ -70,44 +67,26 @@ import Footer from '../components/Footer.astro';
     transform: translateY(-5px);
 }
 
-.collapse-controls {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 16px;
-}
-
-.collapse-toggle-btn {
-    background: none;
-    border: 1px solid var(--text-accent);
-    color: var(--text-accent);
+.read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
+    color: var(--bg-primary);
     font-family: var(--font-primary);
     font-size: 14px;
     font-weight: 600;
-    padding: 6px 14px;
-    border-radius: 15px;
-    cursor: pointer;
-}
-
-.collapse-toggle-btn:hover {
-    background: var(--text-accent);
-    color: var(--bg-primary);
-}
-
-.read-more-btn {
-    background: none;
+    padding: 7px 18px;
+    border-radius: 20px;
     border: none;
-    color: var(--link-color);
-    font-family: var(--font-primary);
-    font-size: 15px;
-    font-weight: 600;
     cursor: pointer;
-    padding: 0;
-    text-decoration: underline;
-    display: inline;
+    text-decoration: none;
+    margin-top: 2px;
 }
 
 .read-more-btn:hover {
-    color: var(--text-accent);
+    background: linear-gradient(135deg, var(--text-accent) 0%, #6b5d50 100%);
+    color: var(--bg-primary);
 }
 </style>
 
@@ -249,6 +228,8 @@ import Footer from '../components/Footer.astro';
             activeTag = params.get('tag');
             var tagBtn = document.querySelector('.tag-cloud-item[data-tag="' + activeTag + '"]');
             if (tagBtn) tagBtn.classList.add('active');
+            var tagClearBtn = document.getElementById('tagClearBtn');
+            if (tagClearBtn) tagClearBtn.style.display = 'inline-block';
         }
         if (params.has('q')) {
             searchQuery = params.get('q');
@@ -315,7 +296,7 @@ import Footer from '../components/Footer.astro';
         var post = postsById[postId];
         if (!post) return;
         var preview = getPreview(post.rawMarkdown || '');
-        div.innerHTML = escapeHtml(preview) + ' <button class="read-more-btn">Read more &#8595;</button>';
+        div.innerHTML = '<p>' + escapeHtml(preview) + '</p><button class="read-more-btn">Read more &#8595;</button>';
         div.querySelector('.read-more-btn').addEventListener('click', function() {
             expandPostContent(div, postId);
         });
@@ -326,7 +307,14 @@ import Footer from '../components/Footer.astro';
         if (!btn) return;
         btn.addEventListener('click', function() {
             isCollapsed = !isCollapsed;
-            btn.textContent = isCollapsed ? 'Expand All' : 'Collapse All';
+            var icon = document.getElementById('collapseIcon');
+            if (isCollapsed) {
+                if (icon) icon.textContent = '⊞';
+                btn.lastChild.textContent = ' Expand All';
+            } else {
+                if (icon) icon.textContent = '⊟';
+                btn.lastChild.textContent = ' Collapse All';
+            }
             document.querySelectorAll('.mini-post-content[data-post-id]').forEach(function(div) {
                 var id = div.getAttribute('data-post-id');
                 if (isCollapsed) {
@@ -471,6 +459,8 @@ import Footer from '../components/Footer.astro';
                 btn.classList.remove('active');
             }
         });
+        var tagClearBtn = document.getElementById('tagClearBtn');
+        if (tagClearBtn) tagClearBtn.style.display = activeTag ? 'inline-block' : 'none';
         updateUrl();
         applyFilters();
         renderPosts();
@@ -482,6 +472,8 @@ import Footer from '../components/Footer.astro';
             activeTag = null;
             searchQuery = '';
             if (searchInput) searchInput.value = '';
+            var tagClearBtn = document.getElementById('tagClearBtn');
+            if (tagClearBtn) tagClearBtn.style.display = 'none';
             document.querySelectorAll('.tag-cloud-item').forEach(function(btn) {
                 btn.classList.remove('active');
             });
@@ -489,6 +481,13 @@ import Footer from '../components/Footer.astro';
             applyFilters();
             renderPosts();
         });
+
+        var tagClearBtn = document.getElementById('tagClearBtn');
+        if (tagClearBtn) {
+            tagClearBtn.addEventListener('click', function() {
+                setTagFilter(null);
+            });
+        }
     }
 
     // --- Infinite Scroll ---

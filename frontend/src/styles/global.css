@@ -193,11 +193,62 @@ a:hover {
     font-weight: 400;
 }
 
+/* View controls (collapse toggle) */
+.view-controls {
+    margin-bottom: 20px;
+}
+
+.collapse-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    width: 100%;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--sidebar-bg-light) 100%);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+}
+
+.collapse-toggle-btn:hover {
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
+    color: var(--bg-primary);
+}
+
+/* Tag cloud header row */
+.tag-cloud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
 .tag-cloud-section h3 {
     font-size: 18px;
     color: var(--text-primary);
-    margin-bottom: 12px;
+    margin-bottom: 0;
     font-weight: 600;
+}
+
+.tag-clear-btn {
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
+    color: var(--bg-primary);
+    border: none;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-family: var(--font-primary);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.tag-clear-btn:hover {
+    background: linear-gradient(135deg, var(--text-accent) 0%, #6b5d50 100%);
 }
 
 .tag-cloud {

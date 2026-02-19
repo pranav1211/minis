@@ -6,6 +6,7 @@ time: "21:44"
 tags: ["project","computer vision","ai"]
 ---
 
+---
 Today I was working on my big project, a multimodal AI application. For this, I’m using a Luxonis OAK-D Pro, which combines a depth sensor and a camera. The idea is simple: it provides more data than a regular camera, which is why I bought one in the first place.
 
 But the title *“stand still”* sums up exactly where I am right now.

@@ -6,6 +6,7 @@ time: "21:59"
 tags: ["movie","movie review"]
 ---
 
+---
 I ended up watching *Venom 3: The Last Dance*, *Kraven the Hunter*, and *Madame Web* back to back. Venom was fine, but the other two, oh my god. I’d heard the talk about how bad they were when they first released, but seeing them myself was something else entirely. Some of them don’t even warrant full reviews, so here are three short ones instead.
 
 ---
