@@ -6,6 +6,7 @@ time: "21:18"
 tags: ["project","computer vision","ai","software"]
 ---
 
+---
 **Progress Update**  
 Over the past couple of days, I focused on getting the DepthAI AAR properly configured and integrated. For context, the AAR is essentially a packaged library (like a zip file) that contains the critical components of the DepthAI module, including the firmware and essential functionality.
 
