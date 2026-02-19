@@ -6,6 +6,7 @@ time: "12:05"
 tags: ["blog","life","projects","month review"]
 ---
 
+---
 Welcome to a new series.  
 This is a monthly review, sometimes short, sometimes long, always messy. The goal is simple: reflect on what was done and figure out what needs to be done next. No rules. Let’s get into it.
 
