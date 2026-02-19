@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
-import LeftSidebar from '../components/LeftSidebar.astro';
 import RightSidebar from '../components/RightSidebar.astro';
 import Footer from '../components/Footer.astro';
 ---
@@ -12,7 +11,6 @@ import Footer from '../components/Footer.astro';
     </Fragment>
     <Header />
     <div class="main-container">
-        <LeftSidebar />
         <div class="content-section">
             <div id="activeFilter" class="active-filter" style="display:none;">
                 <span id="filterLabel"></span>
@@ -29,6 +27,12 @@ import Footer from '../components/Footer.astro';
             </div>
         </div>
         <RightSidebar />
+    </div>
+    <div class="about-mobile">
+        <div class="about-section">
+            <h2>What is Minis?</h2>
+            <p><strong>MINIS</strong> is my space for short posts like quick thoughts, updates, and ideas that don't need a full blog. It's a casual way to share more often, without writing long essays.</p>
+        </div>
     </div>
     <Footer />
 
@@ -74,7 +78,7 @@ import Footer from '../components/Footer.astro';
 (function() {
     var METADATA_URL = 'https://minis.beyondmebtw.com/content/metadata.json';
     var FEATURED_URL = '/data/featured_categories.json';
-    var POSTS_PER_PAGE = 5;
+    var POSTS_PER_PAGE = 4;
 
     var allPosts = [];
     var postsById = {};
@@ -291,10 +295,10 @@ import Footer from '../components/Footer.astro';
             var text = document.getElementById('collapseText');
             if (isCollapsed) {
                 if (icon) icon.className = 'fas fa-expand';
-                if (text) text.textContent = 'Expand All';
+                if (text) text.textContent = 'Expand All Posts';
             } else {
                 if (icon) icon.className = 'fas fa-compress';
-                if (text) text.textContent = 'Collapse All';
+                if (text) text.textContent = 'Collapse All Posts';
             }
             document.querySelectorAll('.mini-post-content[data-post-id]').forEach(function(div) {
                 var id = div.getAttribute('data-post-id');
@@ -433,6 +437,7 @@ import Footer from '../components/Footer.astro';
 
     function setTagFilter(tag) {
         activeTag = tag;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         document.querySelectorAll('.tag-cloud-item').forEach(function(btn) {
             if (btn.getAttribute('data-tag') === activeTag) {
                 btn.classList.add('active');

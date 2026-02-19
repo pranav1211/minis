@@ -62,8 +62,8 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 40px;
-    padding: 20px 0;
+    margin-bottom: 30px;
+    padding: 16px 0;
 }
 
 .page-title {
@@ -71,18 +71,19 @@ a:hover {
     color: var(--text-primary);
     text-align: center;
     display: flex;
-    align-items: baseline;
-    gap: 12px;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
 }
 
 .page-title .minis {
-    font-size: 92px;
+    font-size: 82px;
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    padding: 0 8px;
-    margin: 0 5px;
+    padding: 0 4px;
+    margin: 0;
     font-weight: 700;
     text-decoration: none;
 }
@@ -92,27 +93,27 @@ a:hover {
 }
 
 .page-title .by {
-    font-size: 40px;
+    font-size: 36px;
     color: #0d1a33;
     font-weight: 700;
     font-style: italic;
-    transform: rotate(-8deg);
-    margin: 0 8px;
+    transform: rotate(-5deg);
+    margin: 0 4px;
     position: relative;
-    top: -12px;
+    top: 0;
     background: linear-gradient(45deg, #0d1a33 0%, #1a2d4a 30%, #0066ff 60%, #1a2d4a 80%, #0d1a33 100%);
     background-clip: text;
 }
 
 .page-title .brand {
-    font-size: 48px;
+    font-size: 44px;
     color: #0d1a33;
     font-weight: 600;
     font-style: italic;
-    margin: 0 8px;
+    margin: 0 4px;
     position: relative;
-    transform: rotate(3deg) skewX(-5deg);
-    letter-spacing: -1px;
+    transform: rotate(1deg) skewX(-3deg);
+    letter-spacing: -0.5px;
     background: linear-gradient(45deg, #0d1a33 0%, #1a2d4a 30%, #0066ff 60%, #1a2d4a 80%, #0d1a33 100%);
     background-clip: text;
 }
@@ -122,15 +123,20 @@ a:hover {
     color: inherit;
 }
 
-/* Three-Column Layout */
+/* Two-Column Layout */
 .main-container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 230px 1fr 260px;
-    gap: 30px;
+    grid-template-columns: 1fr 300px;
+    gap: 10px;
     align-items: start;
-    padding: 0 12px;
+    padding: 0 20px;
+}
+
+/* Mobile-only about section (hidden on desktop) */
+.about-mobile {
+    display: none;
 }
 
 /* Left Sidebar - About */
@@ -207,7 +213,7 @@ a:hover {
     background: linear-gradient(135deg, var(--sidebar-bg) 0%, var(--sidebar-bg-light) 100%);
     color: var(--text-primary);
     font-family: var(--font-primary);
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     padding: 9px 18px;
     border-radius: 12px;
@@ -242,7 +248,7 @@ a:hover {
     padding: 4px 10px;
     border-radius: 12px;
     font-family: var(--font-primary);
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
 }
@@ -253,7 +259,8 @@ a:hover {
 
 /* Read more CTA button (dynamically inserted, must be global) */
 .read-more-btn {
-    display: inline-flex;
+    display: block;
+    margin-left: auto;
     align-items: center;
     gap: 6px;
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-accent) 100%);
@@ -266,7 +273,8 @@ a:hover {
     border: none;
     cursor: pointer;
     text-decoration: none;
-    margin-top: 10px;
+    margin-top: 10px;    
+    
 }
 
 .read-more-btn:hover {
@@ -377,14 +385,13 @@ a:hover {
 /* Content Section */
 .content-section {
     width: 100%;
-    max-width: 800px;
     min-height: 60vh;
 }
 
 /* Post Card */
 .mini-post-container {
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 15px;
 }
 
 .date-tab {
@@ -495,7 +502,7 @@ a:hover {
 
 .mini-post-content hr {
     border: none;
-    border-top: 1px solid var(--border-light);
+    border-top: 1px solid rgba(232, 217, 205, 0.375);
     margin: 20px 0;
 }
 
@@ -512,7 +519,7 @@ a:hover {
     color: var(--bg-primary);
     padding: 4px 12px;
     border-radius: 15px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
 }
 
@@ -521,7 +528,7 @@ a:hover {
     color: var(--text-primary);
     padding: 4px 12px;
     border-radius: 15px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     border: 1px solid rgba(255, 255, 255, 0.3);
     text-decoration: none;
@@ -546,8 +553,22 @@ a:hover {
 /* Post Divider */
 .post-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(232, 217, 205, 0.4) 50%, transparent 100%);
-    margin: 30px 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(90, 76, 62, 0.35) 25%, rgba(90, 76, 62, 0.52) 50%, rgba(90, 76, 62, 0.35) 75%, transparent 100%);
+    margin: 12px 0 55px;
+    position: relative;
+}
+
+.post-divider::after {    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #F4F2EF;
+    padding: 0 10px;
+    color: rgba(90, 76, 62, 0.38);
+    font-size: 11px;
+    letter-spacing: 5px;
+    line-height: 1;
 }
 
 /* Loading */
@@ -743,7 +764,7 @@ a:hover {
 
 .post-content hr {
     border: none;
-    border-top: 1px solid var(--border-light);
+    border-top: 1px solid rgba(232, 217, 205, 0.375);
     margin: 30px 0;
 }
 
@@ -772,17 +793,6 @@ a:hover {
 }
 
 /* Responsive */
-@media (max-width: 1200px) {
-    .main-container {
-        grid-template-columns: 1fr 240px;
-        gap: 24px;
-    }
-
-    .left-sidebar {
-        display: none;
-    }
-}
-
 @media (max-width: 968px) {
     .main-container {
         grid-template-columns: 1fr;
@@ -791,15 +801,51 @@ a:hover {
         padding: 0 8px;
     }
 
-    .left-sidebar {
-        display: block;
-        position: relative;
-        order: -2;
-    }
-
     .right-sidebar {
         position: relative;
         order: -1;
+        /* Search and collapse share one row, tags below span full width */
+        display: grid;
+        grid-template-columns: 1fr auto;
+        column-gap: 10px;
+        align-items: stretch;
+    }
+
+    .search-section {
+        grid-column: 1;
+        margin-bottom: 0;
+        display: flex;
+        align-items: stretch;
+    }
+
+    .search-input {
+        flex: 1;
+    }
+
+    .view-controls {
+        grid-column: 2;
+        margin-bottom: 0;
+        display: flex;
+        align-items: stretch;
+    }
+
+    .tag-cloud-section,
+    .featured-categories-section,
+    .right-sidebar .about-section {
+        grid-column: 1 / -1;
+    }
+
+    /* Collapse button compact on mobile — height matches search input */
+    .collapse-toggle-btn {
+        width: auto;
+        padding: 0 12px;
+        white-space: nowrap;
+        flex: 1;
+    }
+
+    /* Hide about section from sidebar on mobile — shown at page bottom instead */
+    .right-sidebar .about-section {
+        display: none;
     }
 
     .content-section {
@@ -809,16 +855,7 @@ a:hover {
     .page-title {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 8px;
-    }
-
-    .page-title .by {
-        transform: rotate(-5deg);
-        top: -6px;
-    }
-
-    .page-title .brand {
-        transform: rotate(2deg) skewX(-3deg);
+        gap: 6px;
     }
 
     /* Show only top 3 tags on mobile, rest hidden until expanded */
@@ -834,7 +871,7 @@ a:hover {
         display: inline-block;
     }
 
-    /* Hide featured categories on mobile (placeholder) */
+    /* Hide featured categories on mobile */
     .featured-categories-section {
         display: none !important;
     }
@@ -846,7 +883,7 @@ a:hover {
     }
 
     .header-container {
-        margin-bottom: 24px;
+        margin-bottom: -24px;
     }
 
     .main-container {
@@ -855,15 +892,15 @@ a:hover {
     }
 
     .page-title .minis {
-        font-size: 65px;
+        font-size: 48px;
     }
 
     .page-title .by {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .page-title .brand {
-        font-size: 32px;
+        font-size: 26px;
     }
 
     .about-section {
@@ -924,25 +961,25 @@ a:hover {
     }
 
     .page-title {
-        flex-direction: column;
-        align-items: center;
-        line-height: 1.1;
-        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: center;
+        line-height: 1.2;
+        gap: 4px;
     }
 
     .page-title .minis {
-        font-size: 56px;
+        font-size: 44px;
     }
 
     .page-title .by {
-        font-size: 20px;
-        transform: rotate(-6deg);
-        top: -6px;
+        font-size: 18px;
+        transform: rotate(-4deg);
+        top: 0;
     }
 
     .page-title .brand {
-        font-size: 24px;
-        transform: rotate(2deg) skewX(-3deg);
+        font-size: 22px;
+        transform: rotate(1deg) skewX(-2deg);
     }
 
     .mini-post {
