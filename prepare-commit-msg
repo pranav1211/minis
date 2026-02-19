@@ -1,4 +1,0 @@
-#!/bin/bash
-if [ -z "$2" ]; then
-    echo "$(date '+%d-%m-%Y')" > "$1"
-fi
