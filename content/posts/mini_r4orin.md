@@ -6,6 +6,7 @@ time: "11:19"
 tags: ["project","experience"]
 ---
 
+---
 I'm working on a project that involves running a YOLO model on the web using **ONNX Runtime Web**. On paper, it sounded straightforward: load the model, run inference, detect people. In practice, it turned into one of the most educational (and humbling) experiences I’ve had so far.
 
 I started the way I usually do with personal projects, dive in headfirst. I planned just enough to get moving, implemented things quickly, fixed errors as they came up, and tried to squeeze out as much performance as possible. This approach has always worked for me. And honestly, there’s nothing wrong with it.
