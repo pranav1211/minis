@@ -1,0 +1,15 @@
+{
+  "name": "minis-backend",
+  "version": "1.0.0",
+  "description": "MINIS live blog editor backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "gray-matter": "^4.0.3",
+    "marked": "^15.0.0"
+  }
+}

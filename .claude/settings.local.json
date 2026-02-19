@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(node scripts/migrate.js:*)",
+      "Bash(npx astro build:*)"
+    ]
+  }
+}

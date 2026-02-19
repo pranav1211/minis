@@ -1,0 +1,39 @@
+---
+const {
+    title,
+    description = "MINIS by BeyondMeBtw - Short-form writing, quick thoughts, updates, and ideas.",
+    ogTitle,
+    ogType = "website",
+    publishedTime,
+    canonicalUrl
+} = Astro.props;
+
+const siteUrl = "https://minis.beyondmebtw.com";
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content={description}>
+    <meta name="author" content="Beyond Me Btw">
+    <title>{title}</title>
+    <link rel="icon" type="image/x-icon" href="https://beyondmebtw.com/assets/images/minis.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Kreon:wght@400;500;600;700&family=Mogra&display=swap" rel="stylesheet">
+    <meta property="og:title" content={ogTitle || title} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl || siteUrl} />
+    <meta property="og:site_name" content="Minis by Beyond Me Btw" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <slot name="head" />
+</head>
+<body>
+    <slot />
+</body>
+</html>
+
+<style is:global>
+    @import '../styles/global.css';
+</style>
