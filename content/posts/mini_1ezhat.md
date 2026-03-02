@@ -23,7 +23,7 @@ It’s race week now, and that feeling of emptiness will disappear soon. F1 is s
 
 ---
 
-This month I also started a **(dopamine detox)[https://minis.beyondmebtw.com/post/mini_xx0ai0/]**. The first week was fine. The second week is still ongoing, so we’ll see how it turns out. It’s an experiment for now.
+This month I also started a **[dopamine detox](https://minis.beyondmebtw.com/post/mini_xx0ai0/)**. The first week was fine. The second week is still ongoing, so we’ll see how it turns out. It’s an experiment for now.
 
 Apart from that, the month just flew by. I had an exam which went well. And slowly, it’s starting to sink in that college life is ending. I have no regrets about how I spent my time or who I spent it with. I did what I wanted to do. I learned a lot. I built things. But I’ll wait for it to actually end before I let myself get nostalgic.
 
