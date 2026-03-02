@@ -1,4 +1,4 @@
-import { cpSync, mkdirSync, existsSync } from 'fs';
+import { cpSync, mkdirSync, existsSync, rmSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -11,6 +11,9 @@ if (!existsSync(source)) {
     process.exit(1);
 }
 
+if (existsSync(dest)) {
+    rmSync(dest, { recursive: true, force: true });
+}
 mkdirSync(dest, { recursive: true });
 cpSync(source, dest, { recursive: true });
 console.log(`Copied content from ${source} to ${dest}`);
