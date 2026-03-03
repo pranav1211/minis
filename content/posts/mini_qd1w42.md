@@ -3,7 +3,7 @@ id: mini_qd1w42
 title: "Dopamine Detox Week 2"
 date: "2026-03-03"
 time: "12:25"
-tags: ["Detox","Dopamine","Life"]
+tags: ["detox","dopamine","life"]
 ---
 
 ---
