@@ -4,6 +4,7 @@ const {
     description = "MINIS by BeyondMeBtw - Short-form writing, quick thoughts, updates, and ideas.",
     ogTitle,
     ogType = "website",
+    ogImage = "https://beyondmebtw.com/assets/images/minis.png",
     publishedTime,
     canonicalUrl
 } = Astro.props;
@@ -25,6 +26,13 @@ const siteUrl = "https://minis.beyondmebtw.com";
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl || siteUrl} />
     <meta property="og:site_name" content="Minis by Beyond Me Btw" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:title" content={ogTitle || title} />
+    <meta name="twitter:description" content={description} />
     {publishedTime && <meta property="article:published_time" content={publishedTime} />}
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <slot name="head" />
