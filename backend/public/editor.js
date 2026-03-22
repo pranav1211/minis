@@ -72,7 +72,7 @@ class MinisEditor {
             ['heading', 'bold', 'italic', 'strike'],
             ['hr', 'quote'],
             ['ul', 'ol', 'task'],
-            ['link'],
+            ['link', 'image'],
         ];
 
         this.createEditor = new toastui.Editor({

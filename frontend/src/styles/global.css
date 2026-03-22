@@ -656,12 +656,6 @@ a:hover {
     font-size: 14px;
 }
 
-.footer-separator {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(90, 76, 62, 0.3), transparent);
-    margin-bottom: 24px;
-}
-
 .footer-inner {
     max-width: 1280px;
     margin: 0 auto;
@@ -670,7 +664,7 @@ a:hover {
     align-items: center;
     flex-wrap: wrap;
     gap: 16px;
-    padding: 0 0 16px;
+    padding: 0 0 14px;
 }
 
 .footer-brand {
@@ -718,8 +712,7 @@ a:hover {
     text-align: center;
     font-size: 13px;
     color: var(--text-light);
-    border-top: 1px solid rgba(90, 76, 62, 0.1);
-    padding-top: 16px;
+    padding-top: 0;
 }
 
 .footer-bottom a {
