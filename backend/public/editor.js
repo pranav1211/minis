@@ -18,6 +18,10 @@ class MinisEditor {
         this._setupImageDeletion('create-editor');
         this._setupImageDeletion('edit-editor');
         this._setupGlobalImageKeydown();
+        this._setupSmartPaste(this.createEditor, 'create-editor');
+        this._setupSmartPaste(this.editEditor, 'edit-editor');
+        this._setupHeadingInput(this.createEditor, 'create-editor');
+        this._setupHeadingInput(this.editEditor, 'edit-editor');
         this.createTagMgr = this.setupTagPills('create');
         this.editTagMgr   = this.setupTagPills('edit');
         this.setupCreateForm();
@@ -418,6 +422,61 @@ class MinisEditor {
         } catch (err) {
             this.showStatus('edit-status', err.message, 'error');
         }
+    }
+
+    // ── Smart paste ──
+
+    _setupSmartPaste(editor, editorId) {
+        document.getElementById(editorId).addEventListener('paste', (e) => {
+            const pasted = (e.clipboardData?.getData('text/plain') || '').trim();
+            if (!pasted || !/^https?:\/\/\S+$/.test(pasted)) return;
+
+            const isImage = /\.(jpe?g|png|gif|webp|svg|bmp|tiff?)(\?.*)?$/i.test(pasted);
+            if (isImage) {
+                e.preventDefault();
+                e.stopPropagation();
+                setTimeout(() => editor.exec('addImage', { imageUrl: pasted, altText: 'image' }), 0);
+                return;
+            }
+
+            const selectedText = window.getSelection()?.toString()?.trim();
+            if (selectedText) {
+                e.preventDefault();
+                e.stopPropagation();
+                setTimeout(() => editor.exec('addLink', { linkUrl: pasted, linkText: selectedText }), 0);
+            }
+        }, true);
+    }
+
+    // ── Heading input shortcuts ──
+
+    _setupHeadingInput(editor, editorId) {
+        document.getElementById(editorId).addEventListener('keydown', (e) => {
+            if (e.key !== ' ') return;
+            if (editor.getEditorType() !== 'wysiwyg') return;
+
+            const sel = window.getSelection();
+            if (!sel?.rangeCount || !sel.isCollapsed) return;
+
+            const range = sel.getRangeAt(0);
+            const node = range.startContainer;
+            if (node.nodeType !== Node.TEXT_NODE) return;
+
+            const before = node.textContent.substring(0, range.startOffset);
+            const m = before.match(/^(#{1,3})$/);
+            if (!m) return;
+
+            e.preventDefault();
+            const level = m[1].length;
+            // strip the # characters from the text node
+            node.textContent = node.textContent.slice(level);
+            const r = document.createRange();
+            r.setStart(node, 0);
+            r.collapse(true);
+            sel.removeAllRanges();
+            sel.addRange(r);
+            setTimeout(() => editor.exec('heading', { level }), 0);
+        }, true);
     }
 
     // ── Image deletion ──

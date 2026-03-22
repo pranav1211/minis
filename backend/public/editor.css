@@ -15,8 +15,8 @@
     --accent: #3b342d;
     --header-h: 52px;
     --tabs-h: 44px;
-    --title-h: 58px;
-    --actions-h: 56px;
+    --title-h: 62px;
+    --actions-h: 58px;
     /* editor fills: 100vh - header - tabs - title - actions */
     --editor-h: calc(100vh - var(--header-h) - var(--tabs-h) - var(--title-h) - var(--actions-h));
 }
@@ -137,9 +137,9 @@ body {
     flex-shrink: 0;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     padding: 0 20px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 2px solid var(--border);
     background: var(--white);
 }
 
@@ -177,7 +177,7 @@ body {
 .tags-inline {
     position: relative;
     flex-shrink: 0;
-    width: 260px;
+    width: 280px;
 }
 
 .tag-input-wrapper {
@@ -200,9 +200,12 @@ body {
     flex-wrap: nowrap;
     gap: 4px;
     align-items: center;
-    overflow: hidden;
-    max-width: 160px;
+    overflow-x: auto;
+    flex: 1;
+    min-width: 0;
+    scrollbar-width: none;
 }
+.tag-pills-row::-webkit-scrollbar { display: none; }
 
 .tag-pill {
     display: inline-flex;
@@ -303,6 +306,8 @@ body {
     flex: 1;
     min-height: 0;
     overflow: hidden;
+    background: #f7f5f2;
+    border-bottom: 1px solid var(--border);
 }
 
 /* Tell Toast UI to fill exactly */
@@ -382,7 +387,7 @@ body {
     align-items: center;
     gap: 14px;
     padding: 0 20px;
-    border-top: 1px solid var(--border);
+    border-top: 2px solid var(--border);
     background: var(--white);
 }
 
@@ -480,7 +485,7 @@ body {
     align-items: center;
     gap: 12px;
     padding: 0 20px;
-    border-top: 1px solid var(--border);
+    border-top: 2px solid var(--border);
     background: var(--white);
     flex-wrap: wrap;
 }
@@ -539,8 +544,8 @@ body {
    RESPONSIVE
    ============================== */
 @media (max-width: 860px) {
-    .edit-layout { grid-template-columns: 220px 1fr; }
-    .tags-inline { width: 200px; }
+    .edit-layout { grid-template-columns: 200px 1fr; }
+    .tags-inline { width: 220px; }
 }
 
 @media (max-width: 640px) {
