@@ -6,7 +6,6 @@ class MinisEditor {
         this.editEditor = null;
         this.createTagMgr = null;
         this.editTagMgr = null;
-        this.editSideBySideEnabled = false;
 
         this.init();
     }
@@ -16,7 +15,7 @@ class MinisEditor {
         this.setupTabs();
         this.initEditors();
         this.createTagMgr = this.setupTagPills('create');
-        this.editTagMgr = this.setupTagPills('edit');
+        this.editTagMgr   = this.setupTagPills('edit');
         this.setupCreateForm();
         this.setupEditForm();
         await this.loadPosts();
@@ -30,8 +29,7 @@ class MinisEditor {
             window.location.href = 'https://manage.beyondmebtw.com';
             return;
         }
-        const authKey = this.getCookie('beyondme_auth_key');
-        if (!authKey) {
+        if (!this.getCookie('beyondme_auth_key')) {
             window.location.href = 'https://manage.beyondmebtw.com';
             return;
         }
@@ -63,78 +61,49 @@ class MinisEditor {
                 document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
                 btn.classList.add('active');
                 document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
-
-                if (btn.dataset.tab === 'create' && this.createEditor) {
-                    setTimeout(() => this.createEditor.codemirror.refresh(), 50);
-                }
-                if (btn.dataset.tab === 'edit' && this.editEditor) {
-                    setTimeout(() => {
-                        this.editEditor.codemirror.refresh();
-                        // Enable side-by-side for edit editor on first switch if post loaded
-                        if (!this.editSideBySideEnabled && this.selectedPostId) {
-                            this._toggleSideBySide(this.editEditor);
-                            this.editSideBySideEnabled = true;
-                        }
-                    }, 80);
-                }
             });
         });
     }
 
-    // ── EasyMDE editors ──
+    // ── Toast UI Editors ──
 
     initEditors() {
-        const config = {
-            spellChecker: false,
-            status: false,
-            sideBySideFullscreen: false,
-            toolbar: [
-                'bold', 'italic', 'heading', '|',
-                'quote', 'unordered-list', 'ordered-list', '|',
-                'link', 'image', 'horizontal-rule', '|',
-                'side-by-side', 'preview', '|',
-                'guide'
-            ],
-        };
+        const toolbarItems = [
+            ['heading', 'bold', 'italic', 'strike'],
+            ['hr', 'quote'],
+            ['ul', 'ol', 'task'],
+            ['link'],
+        ];
 
-        this.createEditor = new EasyMDE({
-            element: document.getElementById('create-content'),
-            ...config,
+        this.createEditor = new toastui.Editor({
+            el: document.getElementById('create-editor'),
+            height: '560px',
+            initialEditType: 'wysiwyg',
+            previewStyle: 'vertical',
             placeholder: 'write something real…',
-            minHeight: '360px',
+            hideModeSwitch: false,
+            toolbarItems,
         });
 
-        this.editEditor = new EasyMDE({
-            element: document.getElementById('edit-content'),
-            ...config,
+        this.editEditor = new toastui.Editor({
+            el: document.getElementById('edit-editor'),
+            height: '560px',
+            initialEditType: 'wysiwyg',
+            previewStyle: 'vertical',
             placeholder: 'edit your mini…',
-            minHeight: '360px',
+            hideModeSwitch: false,
+            toolbarItems,
         });
-
-        // Auto-enable side-by-side for create (starts visible)
-        setTimeout(() => this._toggleSideBySide(this.createEditor), 150);
-    }
-
-    _toggleSideBySide(editor) {
-        try {
-            EasyMDE.toggleSideBySide(editor);
-        } catch (e) {
-            // Fallback: click the toolbar button directly
-            try {
-                const btn = editor.gui.toolbar.querySelector('.fa-columns, [title*="ide"]');
-                if (btn) btn.click();
-            } catch (_) {}
-        }
     }
 
     // ── Tag Pills ──
 
     setupTagPills(prefix) {
-        const pillsRow       = document.getElementById(`${prefix}-pills`);
-        const textInput      = document.getElementById(`${prefix}-tag-text`);
-        const suggestPanel   = document.getElementById(`${prefix}-tag-suggestions`);
-        const clearBtn       = document.getElementById(`${prefix}-clear-tags`);
-        const wrapper        = document.getElementById(`${prefix}-tag-wrapper`);
+        const pillsRow     = document.getElementById(`${prefix}-pills`);
+        const textInput    = document.getElementById(`${prefix}-tag-text`);
+        const suggestPanel = document.getElementById(`${prefix}-tag-suggestions`);
+        const clearBtn     = document.getElementById(`${prefix}-clear-tags`);
+        const wrapper      = document.getElementById(`${prefix}-tag-wrapper`);
 
         let tags = [];
 
@@ -149,11 +118,10 @@ class MinisEditor {
             tags.forEach((t, i) => {
                 const span = document.createElement('span');
                 span.className = 'tag-pill';
-                const label = document.createTextNode(t);
+                span.appendChild(document.createTextNode(t));
                 const btn = document.createElement('button');
                 btn.type = 'button';
                 btn.className = 'pill-remove';
-                btn.title = 'remove';
                 btn.textContent = '×';
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -161,7 +129,6 @@ class MinisEditor {
                     renderPills();
                     showSuggestions(textInput.value.trim());
                 });
-                span.appendChild(label);
                 span.appendChild(btn);
                 pillsRow.appendChild(span);
             });
@@ -179,22 +146,22 @@ class MinisEditor {
         };
 
         const showSuggestions = (query) => {
-            const existing = getExistingTags().filter(t =>
+            const filtered = getExistingTags().filter(t =>
                 !tags.includes(t) &&
                 (query === '' || t.toLowerCase().includes(query.toLowerCase()))
             );
-            if (existing.length === 0) {
-                suggestPanel.innerHTML = '';
+            if (!filtered.length) {
                 suggestPanel.style.display = 'none';
+                suggestPanel.innerHTML = '';
                 return;
             }
-            suggestPanel.innerHTML = existing.slice(0, 25).map(t =>
+            suggestPanel.innerHTML = filtered.slice(0, 25).map(t =>
                 `<span class="suggestion-pill" data-tag="${this.escapeHtml(t)}">${this.escapeHtml(t)}</span>`
             ).join('');
             suggestPanel.style.display = 'flex';
             suggestPanel.querySelectorAll('.suggestion-pill').forEach(el => {
                 el.addEventListener('mousedown', (e) => {
-                    e.preventDefault(); // prevent blur before click
+                    e.preventDefault();
                     addTag(el.dataset.tag);
                     textInput.focus();
                 });
@@ -224,17 +191,8 @@ class MinisEditor {
             showSuggestions(textInput.value.trim());
         });
 
-        textInput.addEventListener('focus', () => {
-            showSuggestions(textInput.value.trim());
-        });
-
-        textInput.addEventListener('blur', () => {
-            setTimeout(() => {
-                suggestPanel.style.display = 'none';
-            }, 200);
-        });
-
-        // Click on wrapper focuses text input
+        textInput.addEventListener('focus',  () => showSuggestions(textInput.value.trim()));
+        textInput.addEventListener('blur',   () => setTimeout(() => { suggestPanel.style.display = 'none'; }, 200));
         wrapper.addEventListener('click', () => textInput.focus());
 
         if (clearBtn) {
@@ -246,17 +204,13 @@ class MinisEditor {
         }
 
         return {
-            getTags: () => tags.join(', '),
-            setTags: (val) => {
+            getTags:  () => tags.join(', '),
+            setTags:  (val) => {
                 tags = (val || '').split(',').map(t => t.trim()).filter(Boolean);
                 renderPills();
                 showSuggestions('');
             },
-            clear: () => {
-                tags = [];
-                renderPills();
-            },
-            refresh: () => showSuggestions(textInput.value.trim()),
+            clear:    () => { tags = []; renderPills(); },
         };
     }
 
@@ -269,7 +223,7 @@ class MinisEditor {
     async createPost() {
         const title    = document.getElementById('create-title').value.trim();
         const tags     = this.createTagMgr.getTags();
-        const content  = this.createEditor.value().trim();
+        const content  = this.createEditor.getMarkdown().trim();
         const password = this.getPassword();
 
         if (!title || !content) {
@@ -295,7 +249,7 @@ class MinisEditor {
             this.showStatus('create-status', `Published! ID: ${data.id}`, 'success');
             document.getElementById('create-title').value = '';
             this.createTagMgr.clear();
-            this.createEditor.value('');
+            this.createEditor.setMarkdown('');
             await this.loadPosts();
         } catch (err) {
             this.showStatus('create-status', err.message, 'error');
@@ -305,8 +259,9 @@ class MinisEditor {
     // ── Edit form ──
 
     setupEditForm() {
-        const searchInput = document.getElementById('edit-search');
-        searchInput.addEventListener('input', () => this.filterPostList(searchInput.value.trim()));
+        document.getElementById('edit-search').addEventListener('input', (e) => {
+            this.filterPostList(e.target.value.trim());
+        });
 
         document.getElementById('editForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -338,7 +293,7 @@ class MinisEditor {
 
     renderPostList(posts) {
         const list = document.getElementById('post-list');
-        if (posts.length === 0) {
+        if (!posts.length) {
             list.innerHTML = '<div class="post-list-empty">no posts found</div>';
             return;
         }
@@ -387,20 +342,10 @@ class MinisEditor {
             document.getElementById('edit-id').value    = post.id;
             document.getElementById('edit-title').value = post.title;
             this.editTagMgr.setTags((post.tags || []).join(', '));
-            this.editEditor.value(post.content || '');
+            this.editEditor.setMarkdown(post.content || '');
 
-            document.getElementById('editForm').style.display       = 'flex';
+            document.getElementById('editForm').style.display        = 'flex';
             document.getElementById('edit-empty-state').style.display = 'none';
-
-            // Enable side-by-side for edit editor (once, when a post is first loaded)
-            if (!this.editSideBySideEnabled) {
-                setTimeout(() => {
-                    this._toggleSideBySide(this.editEditor);
-                    this.editSideBySideEnabled = true;
-                }, 100);
-            } else {
-                setTimeout(() => this.editEditor.codemirror.refresh(), 50);
-            }
         } catch (err) {
             this.showStatus('edit-status', `Failed to load: ${err.message}`, 'error');
         }
@@ -411,7 +356,7 @@ class MinisEditor {
 
         const title    = document.getElementById('edit-title').value.trim();
         const tags     = this.editTagMgr.getTags();
-        const content  = this.editEditor.value().trim();
+        const content  = this.editEditor.getMarkdown().trim();
         const password = this.getPassword();
 
         if (!title || !content) {
@@ -463,7 +408,6 @@ class MinisEditor {
 
             this.showStatus('edit-status', 'Deleted.', 'success');
             this.selectedPostId = null;
-            this.editSideBySideEnabled = false;
             document.getElementById('editForm').style.display        = 'none';
             document.getElementById('edit-empty-state').style.display = 'flex';
             await this.loadPosts();
@@ -476,8 +420,8 @@ class MinisEditor {
 
     showStatus(elementId, message, type) {
         const el = document.getElementById(elementId);
-        el.textContent  = message;
-        el.className    = `status-message ${type}`;
+        el.textContent   = message;
+        el.className     = `status-message ${type}`;
         el.style.display = 'block';
         if (type === 'success') setTimeout(() => { el.style.display = 'none'; }, 4000);
     }

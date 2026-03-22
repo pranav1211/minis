@@ -5,70 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minis Editor</title>
     <link rel="icon" type="image/x-icon" href="https://beyondmebtw.com/assets/images/minis.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kreon:wght@400;500;600;700&family=Mogra&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="editor.css">
 </head>
 <body>
     <div class="app">
 
-        <!-- App Header -->
+        <!-- Header -->
         <header class="app-header">
-            <div class="app-title">
-                <span class="app-title-minis">minis</span>
-                <span class="app-title-dot">✦</span>
-                <span class="app-title-editor">editor</span>
-            </div>
+            <div class="app-title">minis</div>
             <div class="app-header-actions">
                 <a href="https://minis.beyondmebtw.com" target="_blank" class="view-site-btn">
                     <i class="fas fa-arrow-up-right-from-square"></i> view site
                 </a>
-                <button id="logout-btn" class="logout-btn">
-                    <i class="fas fa-right-from-bracket"></i> logout
-                </button>
+                <button id="logout-btn" class="logout-btn">logout</button>
             </div>
         </header>
 
-        <!-- Tab Bar -->
+        <!-- Tabs -->
         <div class="app-tabs">
-            <button class="tab-btn active" data-tab="create">
-                <i class="fas fa-pen-nib"></i> new mini
-            </button>
-            <button class="tab-btn" data-tab="edit">
-                <i class="fas fa-layer-group"></i> edit archive
-            </button>
+            <button class="tab-btn active" data-tab="create">new mini</button>
+            <button class="tab-btn" data-tab="edit">edit mini</button>
         </div>
 
         <!-- ── CREATE TAB ── -->
         <div id="tab-create" class="tab-content active">
             <div class="create-layout">
-                <div class="create-meta-row">
-                    <div class="field-group title-field">
-                        <label for="create-title">title</label>
-                        <input type="text" id="create-title" placeholder="what's on your mind?" autocomplete="off" required>
-                    </div>
-                    <div class="field-group tags-field">
-                        <label>tags</label>
+                <div class="create-title-row">
+                    <input type="text" id="create-title" placeholder="what's on your mind?" autocomplete="off" required>
+                </div>
+                <div class="create-body">
+                    <aside class="tags-panel">
+                        <div class="field-label">tags</div>
                         <div class="tag-input-wrapper" id="create-tag-wrapper">
                             <div class="tag-pills-row" id="create-pills"></div>
                             <input type="text" class="tag-text-input" id="create-tag-text" placeholder="add tag…" autocomplete="off">
                         </div>
                         <div class="tag-suggestions-panel" id="create-tag-suggestions" style="display:none"></div>
                         <button type="button" class="clear-tags-btn" id="create-clear-tags" style="display:none">
-                            <i class="fas fa-xmark"></i> clear all
+                            clear all
                         </button>
+                    </aside>
+                    <div class="editor-wrap">
+                        <div id="create-editor"></div>
                     </div>
                 </div>
-                <div class="editor-area">
-                    <textarea id="create-content"></textarea>
-                </div>
                 <div class="create-actions">
-                    <button type="button" id="create-submit-btn" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i> publish mini
-                    </button>
+                    <button type="button" id="create-submit-btn" class="submit-btn">publish mini</button>
                     <div id="create-status" class="status-message" style="display:none;"></div>
                 </div>
             </div>
@@ -95,37 +79,29 @@
                     </div>
 
                     <form id="editForm" style="display:none;">
-                        <div class="edit-meta-row">
-                            <div class="field-group id-field">
-                                <label>id</label>
-                                <input type="text" id="edit-id" readonly>
-                            </div>
-                            <div class="field-group title-field">
-                                <label for="edit-title">title</label>
-                                <input type="text" id="edit-title" required>
-                            </div>
-                            <div class="field-group tags-field">
-                                <label>tags</label>
+                        <div class="edit-title-row">
+                            <input type="text" id="edit-id" readonly class="edit-id-input" title="Post ID">
+                            <input type="text" id="edit-title" placeholder="title" required class="edit-title-input">
+                        </div>
+                        <div class="edit-body">
+                            <aside class="tags-panel">
+                                <div class="field-label">tags</div>
                                 <div class="tag-input-wrapper" id="edit-tag-wrapper">
                                     <div class="tag-pills-row" id="edit-pills"></div>
                                     <input type="text" class="tag-text-input" id="edit-tag-text" placeholder="add tag…" autocomplete="off">
                                 </div>
                                 <div class="tag-suggestions-panel" id="edit-tag-suggestions" style="display:none"></div>
                                 <button type="button" class="clear-tags-btn" id="edit-clear-tags" style="display:none">
-                                    <i class="fas fa-xmark"></i> clear all
+                                    clear all
                                 </button>
+                            </aside>
+                            <div class="editor-wrap">
+                                <div id="edit-editor"></div>
                             </div>
                         </div>
-                        <div class="editor-area">
-                            <textarea id="edit-content"></textarea>
-                        </div>
                         <div class="edit-actions">
-                            <button type="submit" class="submit-btn">
-                                <i class="fas fa-floppy-disk"></i> update mini
-                            </button>
-                            <button type="button" id="delete-btn" class="danger-btn">
-                                <i class="fas fa-trash"></i> delete
-                            </button>
+                            <button type="submit" class="submit-btn">update mini</button>
+                            <button type="button" id="delete-btn" class="danger-btn">delete</button>
                             <div id="edit-status" class="status-message" style="display:none;"></div>
                         </div>
                     </form>
@@ -136,7 +112,7 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
     <script src="editor.js"></script>
 </body>
 </html>

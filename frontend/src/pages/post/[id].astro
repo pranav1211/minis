@@ -124,29 +124,28 @@ const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURICompone
 
             <article>
                 <header class="post-header">
-                    <div class="post-mini-label">&#9733; mini</div>
                     <h1>{post.data.title}</h1>
                     <div class="post-date">
                         <time datetime={post.data.date}>{formattedDate}</time>
                         <span class="post-time-sep">·</span>
                         <span class="post-time">{post.data.time} IST</span>
                     </div>
-                    <div class="post-tags">
-                        {post.data.tags.map(tag => (
-                            <a href={`/?tag=${tag}`} class="tag">{tag}</a>
-                        ))}
+                    <div class="post-tags-row">
+                        <div class="post-tags">
+                            {post.data.tags.map(tag => (
+                                <a href={`/?tag=${tag}`} class="tag">{tag}</a>
+                            ))}
+                        </div>
+                        <div class="post-share-inline">
+                            <button class="share-btn share-copy" id="shareCopyBtn">
+                                <i class="fas fa-link"></i> Copy Link
+                            </button>
+                            <a href={twitterShareUrl} class="share-btn share-twitter" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-x-twitter"></i> Share
+                            </a>
+                        </div>
                     </div>
                 </header>
-
-                <div class="post-share-bar">
-                    <button class="share-btn share-copy" id="shareCopyBtn">
-                        <i class="fas fa-link"></i> Copy Link
-                    </button>
-                    <a href={twitterShareUrl} class="share-btn share-twitter" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-brands fa-x-twitter"></i> Share
-                    </a>
-                    <span class="share-hint" id="shareHint">share this mini</span>
-                </div>
 
                 <div class="post-content">
                     <Content />
@@ -156,7 +155,7 @@ const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURICompone
             {relatedPostsData.length > 0 && (
                 <section class="related-posts">
                     <div class="related-posts-header">
-                        <h2>more from the archive</h2>
+                        <h2>more minis</h2>
                     </div>
                     <div class="related-posts-grid">
                         {relatedPostsData.map(p => (
@@ -184,36 +183,29 @@ const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURICompone
 </BaseLayout>
 
 <script>
-    const scrollToTop = document.getElementById('scrollToTop');
+    const scrollToTopBtn = document.getElementById('scrollToTop');
     const shareCopyBtn = document.getElementById('shareCopyBtn');
-    const shareHint = document.getElementById('shareHint');
 
-    if (scrollToTop) {
+    if (scrollToTopBtn) {
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
-                scrollToTop.classList.add('visible');
+                scrollToTopBtn.classList.add('visible');
             } else {
-                scrollToTop.classList.remove('visible');
+                scrollToTopBtn.classList.remove('visible');
             }
         });
-        scrollToTop.addEventListener('click', () => {
+        scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
-    if (shareCopyBtn && shareHint) {
+    if (shareCopyBtn) {
         shareCopyBtn.addEventListener('click', async () => {
             try {
                 await navigator.clipboard.writeText(window.location.href);
-                shareHint.textContent = 'link copied!';
                 shareCopyBtn.classList.add('copied');
-                setTimeout(() => {
-                    shareHint.textContent = 'share this mini';
-                    shareCopyBtn.classList.remove('copied');
-                }, 2000);
-            } catch (e) {
-                shareHint.textContent = 'copy failed';
-            }
+                setTimeout(() => shareCopyBtn.classList.remove('copied'), 2000);
+            } catch (e) {}
         });
     }
 </script>

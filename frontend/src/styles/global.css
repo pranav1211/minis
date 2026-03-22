@@ -1113,11 +1113,10 @@ a:hover {
     font-weight: 600;
 }
 
-/* Restructured post header: mini-label → title → date → tags */
+/* Post header */
 .post-header {
     margin-bottom: 0;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(90, 76, 62, 0.1);
+    padding-bottom: 0;
 }
 
 .post-header h1 {
@@ -1131,7 +1130,7 @@ a:hover {
 .post-header .post-date {
     font-size: 14px;
     color: var(--text-light);
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -1152,15 +1151,29 @@ a:hover {
 }
 
 /* =============================
-   SHARE BAR
+   SHARE BAR (inline with tags)
    ============================= */
+.post-tags-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+
+.post-share-inline {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* keep .post-share-bar selector unused but harmless */
 .post-share-bar {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 14px 0;
-    border-bottom: 1px solid rgba(90, 76, 62, 0.1);
-    margin-bottom: 32px;
     flex-wrap: wrap;
 }
 
@@ -1236,8 +1249,8 @@ a:hover {
     display: block;
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid var(--border-light);
-    border-radius: 12px;
-    padding: 20px;
+    border-radius: 14px;
+    padding: 28px 24px;
     text-decoration: none;
     color: var(--text-primary);
     transition: background 0.2s, transform 0.2s;
@@ -1266,23 +1279,23 @@ a:hover {
 }
 
 .related-post-title {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     line-height: 1.4;
 }
 
 .related-post-date {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--text-light);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .related-post-excerpt {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--text-accent);
-    line-height: 1.5;
+    line-height: 1.6;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
