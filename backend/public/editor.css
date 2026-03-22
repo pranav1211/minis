@@ -191,7 +191,7 @@ body {
     background: var(--white);
     min-height: 34px;
     cursor: text;
-    overflow: hidden;
+    overflow: clip;
 }
 .tag-input-wrapper:focus-within { border-color: var(--accent); }
 

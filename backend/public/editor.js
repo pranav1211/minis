@@ -451,32 +451,44 @@ class MinisEditor {
     // ── Heading input shortcuts ──
 
     _setupHeadingInput(editor, editorId) {
-        document.getElementById(editorId).addEventListener('keydown', (e) => {
-            if (e.key !== ' ') return;
-            if (editor.getEditorType() !== 'wysiwyg') return;
+        // Poll until ProseMirror renders inside the editor container
+        const attach = () => {
+            const pm = document.querySelector(`#${editorId} .ProseMirror`);
+            if (!pm) { setTimeout(attach, 300); return; }
 
-            const sel = window.getSelection();
-            if (!sel?.rangeCount || !sel.isCollapsed) return;
+            pm.addEventListener('keydown', (e) => {
+                if (e.key !== ' ') return;
+                if (editor.getEditorType() !== 'wysiwyg') return;
 
-            const range = sel.getRangeAt(0);
-            const node = range.startContainer;
-            if (node.nodeType !== Node.TEXT_NODE) return;
+                const sel = window.getSelection();
+                if (!sel?.rangeCount || !sel.isCollapsed) return;
 
-            const before = node.textContent.substring(0, range.startOffset);
-            const m = before.match(/^(#{1,3})$/);
-            if (!m) return;
+                const range = sel.getRangeAt(0);
+                const node = range.startContainer;
+                if (node.nodeType !== Node.TEXT_NODE) return;
 
-            e.preventDefault();
-            const level = m[1].length;
-            // strip the # characters from the text node
-            node.textContent = node.textContent.slice(level);
-            const r = document.createRange();
-            r.setStart(node, 0);
-            r.collapse(true);
-            sel.removeAllRanges();
-            sel.addRange(r);
-            setTimeout(() => editor.exec('heading', { level }), 0);
-        }, true);
+                const before = node.textContent.substring(0, range.startOffset);
+                const m = before.match(/^(#{1,3})$/);
+                if (!m) return;
+
+                e.preventDefault();
+                e.stopPropagation();
+                const level = m[1].length;
+
+                // Select the # chars and delete via execCommand so ProseMirror
+                // processes the deletion through its own input pipeline
+                const delRange = document.createRange();
+                delRange.setStart(node, 0);
+                delRange.setEnd(node, level);
+                sel.removeAllRanges();
+                sel.addRange(delRange);
+                document.execCommand('delete');
+
+                // Apply heading after ProseMirror settles
+                setTimeout(() => editor.exec('heading', { level }), 0);
+            });
+        };
+        attach();
     }
 
     // ── Image deletion ──
