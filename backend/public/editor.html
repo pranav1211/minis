@@ -34,22 +34,17 @@
             <div class="create-layout">
                 <div class="create-title-row">
                     <input type="text" id="create-title" placeholder="Title" autocomplete="off" required>
-                </div>
-                <div class="create-body">
-                    <aside class="tags-panel">
-                        <div class="field-label">tags</div>
+                    <div class="tags-inline">
                         <div class="tag-input-wrapper" id="create-tag-wrapper">
                             <div class="tag-pills-row" id="create-pills"></div>
-                            <input type="text" class="tag-text-input" id="create-tag-text" placeholder="add tag…" autocomplete="off">
+                            <input type="text" class="tag-text-input" id="create-tag-text" placeholder="tags…" autocomplete="off">
+                            <button type="button" class="clear-tags-btn" id="create-clear-tags" style="display:none" title="clear all">×</button>
                         </div>
                         <div class="tag-suggestions-panel" id="create-tag-suggestions" style="display:none"></div>
-                        <button type="button" class="clear-tags-btn" id="create-clear-tags" style="display:none">
-                            clear all
-                        </button>
-                    </aside>
-                    <div class="editor-wrap">
-                        <div id="create-editor"></div>
                     </div>
+                </div>
+                <div class="editor-wrap">
+                    <div id="create-editor"></div>
                 </div>
                 <div class="create-actions">
                     <button type="button" id="create-submit-btn" class="submit-btn">publish mini</button>
@@ -81,23 +76,18 @@
                     <form id="editForm" style="display:none;">
                         <div class="edit-title-row">
                             <input type="text" id="edit-id" readonly class="edit-id-input" title="Post ID">
-                            <input type="text" id="edit-title" placeholder="title" required class="edit-title-input">
-                        </div>
-                        <div class="edit-body">
-                            <aside class="tags-panel">
-                                <div class="field-label">tags</div>
+                            <input type="text" id="edit-title" placeholder="Title" required class="edit-title-input">
+                            <div class="tags-inline">
                                 <div class="tag-input-wrapper" id="edit-tag-wrapper">
                                     <div class="tag-pills-row" id="edit-pills"></div>
-                                    <input type="text" class="tag-text-input" id="edit-tag-text" placeholder="add tag…" autocomplete="off">
+                                    <input type="text" class="tag-text-input" id="edit-tag-text" placeholder="tags…" autocomplete="off">
+                                    <button type="button" class="clear-tags-btn" id="edit-clear-tags" style="display:none" title="clear all">×</button>
                                 </div>
                                 <div class="tag-suggestions-panel" id="edit-tag-suggestions" style="display:none"></div>
-                                <button type="button" class="clear-tags-btn" id="edit-clear-tags" style="display:none">
-                                    clear all
-                                </button>
-                            </aside>
-                            <div class="editor-wrap">
-                                <div id="edit-editor"></div>
                             </div>
+                        </div>
+                        <div class="editor-wrap">
+                            <div id="edit-editor"></div>
                         </div>
                         <div class="edit-actions">
                             <button type="submit" class="submit-btn">update mini</button>

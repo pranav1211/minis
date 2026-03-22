@@ -6,6 +6,7 @@ class MinisEditor {
         this.editEditor = null;
         this.createTagMgr = null;
         this.editTagMgr = null;
+        this._selectedImg = null;
 
         this.init();
     }
@@ -14,6 +15,9 @@ class MinisEditor {
         this.setupAuth();
         this.setupTabs();
         this.initEditors();
+        this._setupImageDeletion('create-editor');
+        this._setupImageDeletion('edit-editor');
+        this._setupGlobalImageKeydown();
         this.createTagMgr = this.setupTagPills('create');
         this.editTagMgr   = this.setupTagPills('edit');
         this.setupCreateForm();
@@ -77,7 +81,7 @@ class MinisEditor {
 
         this.createEditor = new toastui.Editor({
             el: document.getElementById('create-editor'),
-            height: '560px',
+            height: 'calc(100vh - 210px)',
             initialEditType: 'wysiwyg',
             previewStyle: 'vertical',
             placeholder: 'write something real…',
@@ -87,7 +91,7 @@ class MinisEditor {
 
         this.editEditor = new toastui.Editor({
             el: document.getElementById('edit-editor'),
-            height: '560px',
+            height: 'calc(100vh - 210px)',
             initialEditType: 'wysiwyg',
             previewStyle: 'vertical',
             placeholder: 'edit your mini…',
@@ -414,6 +418,33 @@ class MinisEditor {
         } catch (err) {
             this.showStatus('edit-status', err.message, 'error');
         }
+    }
+
+    // ── Image deletion ──
+
+    _setupImageDeletion(editorId) {
+        document.getElementById(editorId).addEventListener('click', (e) => {
+            if (e.target.tagName === 'IMG') {
+                if (this._selectedImg) this._selectedImg.classList.remove('img-selected');
+                this._selectedImg = e.target;
+                e.target.classList.add('img-selected');
+            } else {
+                if (this._selectedImg) this._selectedImg.classList.remove('img-selected');
+                this._selectedImg = null;
+            }
+        });
+    }
+
+    _setupGlobalImageKeydown() {
+        document.addEventListener('keydown', (e) => {
+            if (!this._selectedImg) return;
+            if (e.key !== 'Delete' && e.key !== 'Backspace') return;
+            const tag = document.activeElement.tagName;
+            if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement.isContentEditable) return;
+            e.preventDefault();
+            this._selectedImg.remove();
+            this._selectedImg = null;
+        });
     }
 
     // ── Helpers ──
