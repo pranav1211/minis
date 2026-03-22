@@ -5,83 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minis Editor</title>
     <link rel="icon" type="image/x-icon" href="https://beyondmebtw.com/assets/images/minis.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kreon:wght@400;500;600;700&family=Mogra&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="editor.css">
 </head>
 <body>
-    <button id="logout-btn" class="logout-btn">Logout</button>
+    <div class="app">
 
-    <div class="container">
-        <header>
-            <h1>Minis Editor</h1>
+        <!-- App Header -->
+        <header class="app-header">
+            <div class="app-title">
+                <span class="app-title-minis">minis</span>
+                <span class="app-title-dot">✦</span>
+                <span class="app-title-editor">editor</span>
+            </div>
+            <div class="app-header-actions">
+                <a href="https://minis.beyondmebtw.com" target="_blank" class="view-site-btn">
+                    <i class="fas fa-arrow-up-right-from-square"></i> view site
+                </a>
+                <button id="logout-btn" class="logout-btn">
+                    <i class="fas fa-right-from-bracket"></i> logout
+                </button>
+            </div>
         </header>
 
-        <!-- Tab Navigation -->
-        <div class="tab-bar">
-            <button class="tab-btn active" data-tab="create">Create New</button>
-            <button class="tab-btn" data-tab="edit">Edit Existing</button>
+        <!-- Tab Bar -->
+        <div class="app-tabs">
+            <button class="tab-btn active" data-tab="create">
+                <i class="fas fa-pen-nib"></i> new mini
+            </button>
+            <button class="tab-btn" data-tab="edit">
+                <i class="fas fa-layer-group"></i> edit archive
+            </button>
         </div>
 
-        <!-- Create Tab -->
+        <!-- ── CREATE TAB ── -->
         <div id="tab-create" class="tab-content active">
-            <form id="createForm" class="editor-form">
-                <div class="form-row">
-                    <div class="form-group flex-2">
-                        <label for="create-title">Title</label>
-                        <input type="text" id="create-title" placeholder="Post title..." required>
+            <div class="create-layout">
+                <div class="create-meta-row">
+                    <div class="field-group title-field">
+                        <label for="create-title">title</label>
+                        <input type="text" id="create-title" placeholder="what's on your mind?" autocomplete="off" required>
                     </div>
-                    <div class="form-group flex-1">
-                        <label for="create-tags">Tags (comma-separated)</label>
-                        <input type="text" id="create-tags" placeholder="blog, project, life">
+                    <div class="field-group tags-field">
+                        <label>tags</label>
+                        <div class="tag-input-wrapper" id="create-tag-wrapper">
+                            <div class="tag-pills-row" id="create-pills"></div>
+                            <input type="text" class="tag-text-input" id="create-tag-text" placeholder="add tag…" autocomplete="off">
+                        </div>
+                        <div class="tag-suggestions-panel" id="create-tag-suggestions" style="display:none"></div>
+                        <button type="button" class="clear-tags-btn" id="create-clear-tags" style="display:none">
+                            <i class="fas fa-xmark"></i> clear all
+                        </button>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="create-content">Content (Markdown)</label>
+                <div class="editor-area">
                     <textarea id="create-content"></textarea>
                 </div>
-                <div class="form-actions">
-                    <button type="submit" class="submit-btn">Create Mini</button>
+                <div class="create-actions">
+                    <button type="button" id="create-submit-btn" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> publish mini
+                    </button>
+                    <div id="create-status" class="status-message" style="display:none;"></div>
                 </div>
-                <div id="create-status" class="status-message" style="display:none;"></div>
-            </form>
-        </div>
-
-        <!-- Edit Tab -->
-        <div id="tab-edit" class="tab-content">
-            <div class="edit-search-section">
-                <div class="form-group">
-                    <label for="edit-search">Find a post</label>
-                    <input type="text" id="edit-search" placeholder="Search by title...">
-                </div>
-                <div id="post-list" class="post-list"></div>
             </div>
-
-            <form id="editForm" class="editor-form" style="display:none;">
-                <div class="form-row">
-                    <div class="form-group flex-shrink">
-                        <label>Post ID</label>
-                        <input type="text" id="edit-id" readonly>
-                    </div>
-                    <div class="form-group flex-2">
-                        <label for="edit-title">Title</label>
-                        <input type="text" id="edit-title" required>
-                    </div>
-                    <div class="form-group flex-1">
-                        <label for="edit-tags">Tags (comma-separated)</label>
-                        <input type="text" id="edit-tags">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="edit-content">Content (Markdown)</label>
-                    <textarea id="edit-content"></textarea>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="submit-btn">Update Mini</button>
-                    <button type="button" id="delete-btn" class="danger-btn">Delete</button>
-                </div>
-                <div id="edit-status" class="status-message" style="display:none;"></div>
-            </form>
         </div>
+
+        <!-- ── EDIT TAB ── -->
+        <div id="tab-edit" class="tab-content">
+            <div class="edit-layout">
+
+                <!-- Left: Post List -->
+                <aside class="edit-sidebar">
+                    <div class="edit-sidebar-header">
+                        <input type="text" id="edit-search" placeholder="search posts…" autocomplete="off">
+                        <div class="edit-sidebar-count" id="edit-post-count"></div>
+                    </div>
+                    <div id="post-list" class="post-list"></div>
+                </aside>
+
+                <!-- Right: Editor -->
+                <div class="edit-main">
+                    <div class="edit-empty-state" id="edit-empty-state">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>select a mini to edit</span>
+                    </div>
+
+                    <form id="editForm" style="display:none;">
+                        <div class="edit-meta-row">
+                            <div class="field-group id-field">
+                                <label>id</label>
+                                <input type="text" id="edit-id" readonly>
+                            </div>
+                            <div class="field-group title-field">
+                                <label for="edit-title">title</label>
+                                <input type="text" id="edit-title" required>
+                            </div>
+                            <div class="field-group tags-field">
+                                <label>tags</label>
+                                <div class="tag-input-wrapper" id="edit-tag-wrapper">
+                                    <div class="tag-pills-row" id="edit-pills"></div>
+                                    <input type="text" class="tag-text-input" id="edit-tag-text" placeholder="add tag…" autocomplete="off">
+                                </div>
+                                <div class="tag-suggestions-panel" id="edit-tag-suggestions" style="display:none"></div>
+                                <button type="button" class="clear-tags-btn" id="edit-clear-tags" style="display:none">
+                                    <i class="fas fa-xmark"></i> clear all
+                                </button>
+                            </div>
+                        </div>
+                        <div class="editor-area">
+                            <textarea id="edit-content"></textarea>
+                        </div>
+                        <div class="edit-actions">
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-floppy-disk"></i> update mini
+                            </button>
+                            <button type="button" id="delete-btn" class="danger-btn">
+                                <i class="fas fa-trash"></i> delete
+                            </button>
+                            <div id="edit-status" class="status-message" style="display:none;"></div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>

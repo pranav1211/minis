@@ -29,6 +29,56 @@ const publishedTime = `${post.data.date}T${post.data.time}:00+05:30`;
 const rawText = post.body?.replace(/[#*_\[\]()>`~-]/g, '').replace(/\n+/g, ' ').trim() || '';
 const description = rawText.substring(0, 160) + (rawText.length > 160 ? '...' : '');
 
+// Related posts logic
+const allPosts = await getCollection('posts');
+const sortedOtherPosts = allPosts
+    .filter(p => p.data.id !== post.data.id)
+    .sort((a, b) => {
+        const dateA = new Date(`${a.data.date}T${a.data.time || '00:00'}:00+05:30`);
+        const dateB = new Date(`${b.data.date}T${b.data.time || '00:00'}:00+05:30`);
+        return dateB.getTime() - dateA.getTime();
+    });
+
+const currentTags = post.data.tags || [];
+let relatedPosts = [];
+const usedIds = new Set();
+
+// Try one post per tag (up to 3 tags)
+for (const tag of currentTags.slice(0, 3)) {
+    const tagged = sortedOtherPosts.filter(p =>
+        !usedIds.has(p.data.id) &&
+        (p.data.tags || []).includes(tag)
+    );
+    if (tagged.length > 0) {
+        relatedPosts.push(tagged[0]);
+        usedIds.add(tagged[0].data.id);
+    }
+}
+
+// Fill remaining slots with latest posts
+if (relatedPosts.length < 3) {
+    const fillers = sortedOtherPosts.filter(p => !usedIds.has(p.data.id));
+    for (const p of fillers) {
+        if (relatedPosts.length >= 3) break;
+        relatedPosts.push(p);
+        usedIds.add(p.data.id);
+    }
+}
+
+// Pre-compute related post display data in frontmatter (avoids block-body map in template)
+const relatedPostsData = relatedPosts.map(p => ({
+    id: p.data.id,
+    title: p.data.title,
+    date: new Date(p.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
+    tags: (p.data.tags || []).slice(0, 3),
+    excerpt: (p.body || '')
+        .replace(/^---$/gm, '')
+        .replace(/[#*_\[\]()>`~]/g, '')
+        .replace(/\n+/g, ' ')
+        .trim()
+        .substring(0, 110),
+}));
+
 const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -47,6 +97,8 @@ const jsonLd = {
     },
     "keywords": post.data.tags.join(', ')
 };
+
+const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(post.data.title)}`;
 ---
 
 <BaseLayout
@@ -61,28 +113,107 @@ const jsonLd = {
         {post.data.tags.map(tag => (
             <meta property="article:tag" content={tag} />
         ))}
-        <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+        <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
     </Fragment>
 
-    <Header />
-    <main class="post-page">
-        <article>
-            <header class="post-header">
-                <div class="post-date">
-                    <time datetime={post.data.date}>{formattedDate}</time> at {post.data.time} IST
+    <div class="post-page-layout">
+        <Header />
+        <main class="post-page">
+            <a href="/" class="back-link-top"><i class="fas fa-arrow-left"></i> all minis</a>
+
+            <article>
+                <header class="post-header">
+                    <div class="post-mini-label">&#9733; mini</div>
+                    <h1>{post.data.title}</h1>
+                    <div class="post-date">
+                        <time datetime={post.data.date}>{formattedDate}</time>
+                        <span class="post-time-sep">·</span>
+                        <span class="post-time">{post.data.time} IST</span>
+                    </div>
+                    <div class="post-tags">
+                        {post.data.tags.map(tag => (
+                            <a href={`/?tag=${tag}`} class="tag">{tag}</a>
+                        ))}
+                    </div>
+                </header>
+
+                <div class="post-share-bar">
+                    <button class="share-btn share-copy" id="shareCopyBtn">
+                        <i class="fas fa-link"></i> Copy Link
+                    </button>
+                    <a href={twitterShareUrl} class="share-btn share-twitter" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-x-twitter"></i> Share
+                    </a>
+                    <span class="share-hint" id="shareHint">share this mini</span>
                 </div>
-                <h1>{post.data.title}</h1>
-                <div class="post-tags">
-                    {post.data.tags.map(tag => (
-                        <a href={`/?tag=${tag}`} class="tag">{tag}</a>
-                    ))}
+
+                <div class="post-content">
+                    <Content />
                 </div>
-            </header>
-            <div class="post-content">
-                <Content />
-            </div>
-        </article>
-        <a href="/" class="back-link">&larr; Back to all minis</a>
-    </main>
-    <Footer />
+            </article>
+
+            {relatedPostsData.length > 0 && (
+                <section class="related-posts">
+                    <div class="related-posts-header">
+                        <h2>more from the archive</h2>
+                    </div>
+                    <div class="related-posts-grid">
+                        {relatedPostsData.map(p => (
+                            <a href={`/post/${p.id}`} class="related-post-card">
+                                <div class="related-post-tags">
+                                    {p.tags.map(t => (
+                                        <span class="related-tag">{t}</span>
+                                    ))}
+                                </div>
+                                <div class="related-post-title">{p.title}</div>
+                                <div class="related-post-date">{p.date}</div>
+                                {p.excerpt && <div class="related-post-excerpt">{p.excerpt}…</div>}
+                            </a>
+                        ))}
+                    </div>
+                </section>
+            )}
+        </main>
+        <Footer />
+    </div>
+
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 </BaseLayout>
+
+<script>
+    const scrollToTop = document.getElementById('scrollToTop');
+    const shareCopyBtn = document.getElementById('shareCopyBtn');
+    const shareHint = document.getElementById('shareHint');
+
+    if (scrollToTop) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTop.classList.add('visible');
+            } else {
+                scrollToTop.classList.remove('visible');
+            }
+        });
+        scrollToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    if (shareCopyBtn && shareHint) {
+        shareCopyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                shareHint.textContent = 'link copied!';
+                shareCopyBtn.classList.add('copied');
+                setTimeout(() => {
+                    shareHint.textContent = 'share this mini';
+                    shareCopyBtn.classList.remove('copied');
+                }, 2000);
+            } catch (e) {
+                shareHint.textContent = 'copy failed';
+            }
+        });
+    }
+</script>

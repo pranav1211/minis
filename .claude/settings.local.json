@@ -3,7 +3,8 @@
     "allow": [
       "Bash(dir:*)",
       "Bash(node scripts/migrate.js:*)",
-      "Bash(npx astro build:*)"
+      "Bash(npx astro build:*)",
+      "Bash(find /c/Users/pranav/Documents/BMB/Minis/backend/public -type f -name *.css)"
     ]
   }
 }

@@ -12,6 +12,11 @@ This is an extension of my main blog : [Beyondmebtw](Https://beyondmebtw.com)
 
 # Changelog
 
+## V2.2 (22/03/26)
+- better ui for the backend on the editor and creator
+- frontend better standalone features, share buttons, clear headers and footers.
+- suggested posts in the page has been added
+
 ## V2.1 (02/03/26)
 - fixed an issue with sitemap generation for the individual posts, it was generating by copying content but didnt remove the old ones which led to an addition type situation, it nows starts fresh to ensure all pages are indexed.
 - Created a changelog and readme
