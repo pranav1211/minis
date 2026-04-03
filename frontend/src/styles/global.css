@@ -1208,6 +1208,17 @@ a:hover {
     text-decoration: none;
 }
 
+.share-bluesky {
+    background: #0085ff;
+    color: #fff;
+}
+
+.share-bluesky:hover {
+    background: #0066cc;
+    color: #fff;
+    text-decoration: none;
+}
+
 .share-hint {
     font-size: 13px;
     color: var(--text-light);
