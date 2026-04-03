@@ -177,12 +177,12 @@ body {
 .tags-inline {
     position: relative;
     flex-shrink: 0;
-    width: 280px;
+    width: 380px;
 }
 
 .tag-input-wrapper {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
     gap: 4px;
     padding: 5px 8px;
@@ -191,21 +191,17 @@ body {
     background: var(--white);
     min-height: 34px;
     cursor: text;
-    overflow: clip;
 }
 .tag-input-wrapper:focus-within { border-color: var(--accent); }
 
 .tag-pills-row {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 4px;
     align-items: center;
-    overflow-x: auto;
     flex: 1;
     min-width: 0;
-    scrollbar-width: none;
 }
-.tag-pills-row::-webkit-scrollbar { display: none; }
 
 .tag-pill {
     display: inline-flex;
@@ -545,7 +541,7 @@ body {
    ============================== */
 @media (max-width: 860px) {
     .edit-layout { grid-template-columns: 200px 1fr; }
-    .tags-inline { width: 220px; }
+    .tags-inline { width: 300px; }
 }
 
 @media (max-width: 640px) {
