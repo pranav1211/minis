@@ -52,7 +52,7 @@ function getDescription(markdown) {
     return rawText.substring(0, 160) + (rawText.length > 160 ? '...' : '');
 }
 
-const OG_IMAGE = 'https://content.beyondmebtw.com/assets/minissm.png';
+const OG_IMAGE = 'https://content.beyondmebtw.com/assets/projects/minis/minissm.png';
 
 async function generatePostHtml(postData) {
     const { id, title, date, time, tags, content } = postData;
