@@ -12,6 +12,9 @@ This is an extension of my main blog : [Beyondmebtw](Https://beyondmebtw.com)
 
 # Changelog
 
+## 2.3
+- social media graphic cards added
+
 ## V2.2 (22/03/26)
 - better ui for the backend on the editor and creator
 - frontend better standalone features, share buttons, clear headers and footers.
