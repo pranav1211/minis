@@ -405,6 +405,13 @@ class MinisEditor {
 
             document.getElementById('editForm').style.display        = 'flex';
             document.getElementById('edit-empty-state').style.display = 'none';
+
+            requestAnimationFrame(() => {
+                try { this.editEditor.moveCursorToStart(); } catch (_) {}
+                const host = document.getElementById('edit-editor');
+                host?.querySelectorAll('.toastui-editor, .ProseMirror, .toastui-editor-contents')
+                    .forEach(el => { el.scrollTop = 0; });
+            });
         } catch (err) {
             this.showStatus('edit-status', `Failed to load: ${err.message}`, 'error');
         }
