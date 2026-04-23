@@ -69,6 +69,7 @@ class MinisEditor {
                 document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
                 btn.classList.add('active');
                 document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+                document.body.dataset.activeTab = btn.dataset.tab;
             });
         });
     }

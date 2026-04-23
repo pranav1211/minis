@@ -9,103 +9,116 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="editor.css">
 </head>
-<body>
-    <div class="app">
+<body data-active-tab="create">
 
-        <!-- Header -->
-        <header class="app-header">
-            <div class="app-title">Minis Dashboard</div>
-            <div class="app-header-actions">
-                <a href="https://minis.beyondmebtw.com" target="_blank" class="view-site-btn">
-                    <i class="fas fa-arrow-up-right-from-square"></i> view site
-                </a>
-                <a href="https://minis.beyondmebtw.com/private" target="_blank" class="view-site-btn private-editor-btn">
-                    <i class="fas fa-lock"></i> private editor
-                </a>
-                <button id="logout-btn" class="logout-btn">logout</button>
+    <div class="page-shell">
+
+        <!-- LEFT: post list (edit tab only) -->
+        <aside class="side-panel side-left">
+            <div class="side-card post-list-card">
+                <div class="side-card-header">
+                    <div class="side-card-title">minis</div>
+                    <input type="text" id="edit-search" placeholder="search posts…" autocomplete="off">
+                    <div class="edit-sidebar-count" id="edit-post-count"></div>
+                </div>
+                <div id="post-list" class="post-list"></div>
             </div>
-        </header>
+        </aside>
 
-        <!-- Tabs -->
-        <div class="app-tabs">
-            <button class="tab-btn active" data-tab="create">new mini</button>
-            <button class="tab-btn" data-tab="edit">edit mini</button>
-        </div>
+        <!-- CENTER: workspace -->
+        <div class="app">
 
-        <!-- ── CREATE TAB ── -->
-        <div id="tab-create" class="tab-content active">
-            <div class="create-layout">
-                <div class="create-title-row">
-                    <input type="text" id="create-title" placeholder="Title" autocomplete="off" required>
-                    <select id="create-visibility" class="visibility-select" title="visibility">
-                        <option value="public" selected>public</option>
-                        <option value="private">private (unlisted)</option>
-                    </select>
-                    <div class="tags-inline">
-                        <div class="tag-input-wrapper" id="create-tag-wrapper">
-                            <div class="tag-pills-row" id="create-pills"></div>
-                            <input type="text" class="tag-text-input" id="create-tag-text" placeholder="tags…" autocomplete="off">
-                            <button type="button" class="clear-tags-btn" id="create-clear-tags" style="display:none" title="clear all">×</button>
-                        </div>
-                        <div class="tag-suggestions-panel" id="create-tag-suggestions" style="display:none"></div>
+            <!-- Header -->
+            <header class="app-header">
+                <div class="app-title">Minis Dashboard</div>
+                <div class="app-header-actions">
+                    <a href="https://minis.beyondmebtw.com" target="_blank" class="view-site-btn">
+                        <i class="fas fa-arrow-up-right-from-square"></i> view site
+                    </a>
+                    <a href="https://minis.beyondmebtw.com/private" target="_blank" class="view-site-btn private-editor-btn">
+                        <i class="fas fa-lock"></i> private editor
+                    </a>
+                    <button id="logout-btn" class="logout-btn">logout</button>
+                </div>
+            </header>
+
+            <!-- Tabs -->
+            <div class="app-tabs">
+                <button class="tab-btn active" data-tab="create">new mini</button>
+                <button class="tab-btn" data-tab="edit">edit mini</button>
+            </div>
+
+            <!-- ── CREATE TAB ── -->
+            <div id="tab-create" class="tab-content active">
+                <div class="create-layout">
+                    <div class="create-title-row">
+                        <input type="text" id="create-title" placeholder="Title" autocomplete="off" required>
+                        <select id="create-visibility" class="visibility-select" title="visibility">
+                            <option value="public" selected>public</option>
+                            <option value="private">private (unlisted)</option>
+                        </select>
+                    </div>
+                    <div class="editor-wrap">
+                        <div id="create-editor"></div>
+                    </div>
+                    <div class="create-actions">
+                        <button type="button" id="create-submit-btn" class="submit-btn">publish mini</button>
+                        <div id="create-status" class="status-message" style="display:none;"></div>
                     </div>
                 </div>
-                <div class="editor-wrap">
-                    <div id="create-editor"></div>
-                </div>
-                <div class="create-actions">
-                    <button type="button" id="create-submit-btn" class="submit-btn">publish mini</button>
-                    <div id="create-status" class="status-message" style="display:none;"></div>
-                </div>
             </div>
+
+            <!-- ── EDIT TAB ── -->
+            <div id="tab-edit" class="tab-content">
+                <div class="edit-empty-state" id="edit-empty-state">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>select a mini to edit</span>
+                </div>
+
+                <form id="editForm" style="display:none;">
+                    <div class="edit-title-row">
+                        <input type="text" id="edit-id" readonly class="edit-id-input" title="Post ID">
+                        <input type="text" id="edit-title" placeholder="Title" required class="edit-title-input">
+                    </div>
+                    <div class="editor-wrap">
+                        <div id="edit-editor"></div>
+                    </div>
+                    <div class="edit-actions">
+                        <button type="submit" class="submit-btn">update mini</button>
+                        <button type="button" id="delete-btn" class="danger-btn">delete</button>
+                        <div id="edit-status" class="status-message" style="display:none;"></div>
+                    </div>
+                </form>
+            </div>
+
         </div>
 
-        <!-- ── EDIT TAB ── -->
-        <div id="tab-edit" class="tab-content">
-            <div class="edit-layout">
-
-                <!-- Left: Post List -->
-                <aside class="edit-sidebar">
-                    <div class="edit-sidebar-header">
-                        <input type="text" id="edit-search" placeholder="search posts…" autocomplete="off">
-                        <div class="edit-sidebar-count" id="edit-post-count"></div>
-                    </div>
-                    <div id="post-list" class="post-list"></div>
-                </aside>
-
-                <!-- Right: Editor -->
-                <div class="edit-main">
-                    <div class="edit-empty-state" id="edit-empty-state">
-                        <i class="fas fa-arrow-left"></i>
-                        <span>select a mini to edit</span>
-                    </div>
-
-                    <form id="editForm" style="display:none;">
-                        <div class="edit-title-row">
-                            <input type="text" id="edit-id" readonly class="edit-id-input" title="Post ID">
-                            <input type="text" id="edit-title" placeholder="Title" required class="edit-title-input">
-                            <div class="tags-inline">
-                                <div class="tag-input-wrapper" id="edit-tag-wrapper">
-                                    <div class="tag-pills-row" id="edit-pills"></div>
-                                    <input type="text" class="tag-text-input" id="edit-tag-text" placeholder="tags…" autocomplete="off">
-                                    <button type="button" class="clear-tags-btn" id="edit-clear-tags" style="display:none" title="clear all">×</button>
-                                </div>
-                                <div class="tag-suggestions-panel" id="edit-tag-suggestions" style="display:none"></div>
-                            </div>
-                        </div>
-                        <div class="editor-wrap">
-                            <div id="edit-editor"></div>
-                        </div>
-                        <div class="edit-actions">
-                            <button type="submit" class="submit-btn">update mini</button>
-                            <button type="button" id="delete-btn" class="danger-btn">delete</button>
-                            <div id="edit-status" class="status-message" style="display:none;"></div>
-                        </div>
-                    </form>
+        <!-- RIGHT: tags card -->
+        <aside class="side-panel side-right">
+            <!-- Create-tab tags -->
+            <div class="side-card tag-card tag-card-create">
+                <div class="side-card-title">tags</div>
+                <div class="tag-input-wrapper" id="create-tag-wrapper">
+                    <div class="tag-pills-row" id="create-pills"></div>
+                    <input type="text" class="tag-text-input" id="create-tag-text" placeholder="add tag…" autocomplete="off">
+                    <button type="button" class="clear-tags-btn" id="create-clear-tags" style="display:none" title="clear all">×</button>
                 </div>
-
+                <div class="tag-suggestions-panel" id="create-tag-suggestions" style="display:none"></div>
+                <div class="tag-card-hint">press enter or comma to add</div>
             </div>
-        </div>
+
+            <!-- Edit-tab tags -->
+            <div class="side-card tag-card tag-card-edit">
+                <div class="side-card-title">tags</div>
+                <div class="tag-input-wrapper" id="edit-tag-wrapper">
+                    <div class="tag-pills-row" id="edit-pills"></div>
+                    <input type="text" class="tag-text-input" id="edit-tag-text" placeholder="add tag…" autocomplete="off">
+                    <button type="button" class="clear-tags-btn" id="edit-clear-tags" style="display:none" title="clear all">×</button>
+                </div>
+                <div class="tag-suggestions-panel" id="edit-tag-suggestions" style="display:none"></div>
+                <div class="tag-card-hint">press enter or comma to add</div>
+            </div>
+        </aside>
 
     </div>
 
