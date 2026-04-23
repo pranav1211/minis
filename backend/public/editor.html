@@ -34,6 +34,10 @@
             <div class="create-layout">
                 <div class="create-title-row">
                     <input type="text" id="create-title" placeholder="Title" autocomplete="off" required>
+                    <select id="create-visibility" class="visibility-select" title="visibility">
+                        <option value="public" selected>public</option>
+                        <option value="private">private (unlisted)</option>
+                    </select>
                     <div class="tags-inline">
                         <div class="tag-input-wrapper" id="create-tag-wrapper">
                             <div class="tag-pills-row" id="create-pills"></div>
@@ -100,6 +104,22 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- Private share-link modal (shown after creating a private mini) -->
+    <div id="private-share-modal" class="share-modal" style="display:none;">
+        <div class="share-modal-inner">
+            <h3>private mini created</h3>
+            <p>save this link. it contains the access token — only people with the full link can read this mini. you can also find it later at <a href="/private" target="_blank" rel="noopener">/private</a>.</p>
+            <div class="share-modal-link-row">
+                <input type="text" id="private-share-link" readonly>
+                <button type="button" id="private-share-copy">copy</button>
+            </div>
+            <div class="share-modal-actions">
+                <button type="button" id="private-share-open">open in new tab</button>
+                <button type="button" id="private-share-close">close</button>
+            </div>
+        </div>
     </div>
 
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>

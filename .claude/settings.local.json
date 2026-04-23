@@ -4,7 +4,9 @@
       "Bash(dir:*)",
       "Bash(node scripts/migrate.js:*)",
       "Bash(npx astro build:*)",
-      "Bash(find /c/Users/pranav/Documents/BMB/Minis/backend/public -type f -name *.css)"
+      "Bash(find /c/Users/pranav/Documents/BMB/Minis/backend/public -type f -name *.css)",
+      "Bash(chmod +x /home/pranav/Desktop/minis/minis-private/shellfiles/updateminisprivate.sh /home/pranav/Desktop/minis/minis-private/shellfiles/minisprivate.sh)",
+      "Bash(node --check backend/public/editor.js)"
     ]
   }
 }

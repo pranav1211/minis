@@ -552,3 +552,49 @@ body {
     .create-title-row, .edit-title-row { flex-wrap: wrap; height: auto; padding: 10px 14px; gap: 8px; }
     .tags-inline { width: 100%; }
 }
+
+/* VISIBILITY SELECT (private-mini toggle) */
+.visibility-select {
+    padding: 6px 10px;
+    border: 1px solid var(--border, #d1d5db);
+    background: #fff;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-family: inherit;
+}
+.visibility-select:focus { outline: 2px solid #d4a017; outline-offset: 1px; }
+
+/* PRIVATE SHARE MODAL */
+.share-modal {
+    position: fixed; inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000;
+}
+.share-modal-inner {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.6rem;
+    max-width: 560px; width: 92%;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+}
+.share-modal-inner h3 {
+    margin: 0 0 0.6rem 0;
+    color: #c47e00;
+    font-size: 1.1rem;
+}
+.share-modal-inner p { font-size: 0.9rem; color: #444; margin-bottom: 0.8rem; }
+.share-modal-link-row { display: flex; gap: 0.5rem; }
+.share-modal-link-row input {
+    flex: 1; padding: 0.5rem 0.65rem; border: 1px solid #d1d5db; border-radius: 5px;
+    font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem;
+}
+.share-modal-link-row button,
+.share-modal-actions button {
+    padding: 0.5rem 0.85rem; border: 1px solid #d1d5db; background: #f6f6f6;
+    border-radius: 5px; cursor: pointer; font-size: 0.85rem;
+}
+.share-modal-link-row button:hover,
+.share-modal-actions button:hover { background: #ececec; }
+.share-modal-actions { display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 0.8rem; }

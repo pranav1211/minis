@@ -226,6 +226,22 @@ class MinisEditor {
 
     setupCreateForm() {
         document.getElementById('create-submit-btn').addEventListener('click', () => this.createPost());
+
+        // Private share modal wiring
+        const modal = document.getElementById('private-share-modal');
+        if (modal) {
+            document.getElementById('private-share-close').addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            document.getElementById('private-share-copy').addEventListener('click', () => {
+                const link = document.getElementById('private-share-link').value;
+                navigator.clipboard.writeText(link);
+            });
+            document.getElementById('private-share-open').addEventListener('click', () => {
+                const link = document.getElementById('private-share-link').value;
+                window.open(link, '_blank', 'noopener,noreferrer');
+            });
+        }
     }
 
     async createPost() {
@@ -233,6 +249,8 @@ class MinisEditor {
         const tags     = this.createTagMgr.getTags();
         const content  = this.createEditor.getMarkdown().trim();
         const password = this.getPassword();
+        const visibilityEl = document.getElementById('create-visibility');
+        const visibility = visibilityEl ? visibilityEl.value : 'public';
 
         if (!title || !content) {
             this.showStatus('create-status', 'Title and content are required.', 'error');
@@ -241,6 +259,10 @@ class MinisEditor {
         if (!password) {
             this.showStatus('create-status', 'Authentication required.', 'error');
             return;
+        }
+
+        if (visibility === 'private') {
+            return this.createPrivatePost({ title, tags, content });
         }
 
         this.showStatus('create-status', 'Publishing…', 'loading');
@@ -259,6 +281,34 @@ class MinisEditor {
             this.createTagMgr.clear();
             this.createEditor.setMarkdown('');
             await this.loadPosts();
+        } catch (err) {
+            this.showStatus('create-status', err.message, 'error');
+        }
+    }
+
+    async createPrivatePost({ title, tags, content }) {
+        this.showStatus('create-status', 'Publishing private mini…', 'loading');
+        try {
+            const res = await fetch('/private/api/content', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title, tags, content }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || 'Failed to create private mini');
+
+            this.showStatus('create-status', 'Private mini published.', 'success');
+            document.getElementById('create-title').value = '';
+            this.createTagMgr.clear();
+            this.createEditor.setMarkdown('');
+
+            const fullLink = window.location.origin + data.url;
+            const linkInput = document.getElementById('private-share-link');
+            const modal = document.getElementById('private-share-modal');
+            if (linkInput && modal) {
+                linkInput.value = fullLink;
+                modal.style.display = 'flex';
+            }
         } catch (err) {
             this.showStatus('create-status', err.message, 'error');
         }
