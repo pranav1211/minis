@@ -16,7 +16,7 @@ I meant to write this is a blog post, had it saved but it is too late so here it
 
 It started late one night at 2 a.m. with a very simple but uncomfortable question: why am I even doing this?
 
-What began with Instagram quickly turned into something bigger. Deleting one app did not solve the problem because the app was never really the problem. 
+What began with Instagram quickly turned into something bigger. Deleting one app did not solve the problem because the app was never really the problem.
 
 The real issue was the loop itself, the constant need to reach for stimulation, the habit of filling every empty second with noise. Once that became obvious, I went further. I removed short-form social media completely and cut off the easiest doors into mindless scrolling.
 
@@ -24,7 +24,7 @@ The real issue was the loop itself, the constant need to reach for stimulation, 
 
 The first week was not some dramatic reinvention. It was awkward, long, and honestly uncomfortable.
 
-Without the usual scroll cycle, the days felt stretched out. My fingers felt restless, the silence felt louder, and I kept noticing how often my brain expected a hit of stimulation during the smallest pauses. That was probably the clearest sign of how deeply the habit had settled in. 
+Without the usual scroll cycle, the days felt stretched out. My fingers felt restless, the silence felt louder, and I kept noticing how often my brain expected a hit of stimulation during the smallest pauses. That was probably the clearest sign of how deeply the habit had settled in.
 
 But once that initial agitation passed, something else started to happen.
 My attention felt less fragmented. I could focus better, enjoy things more fully, and spend time on work or small creative improvements without splitting my mind every few minutes. It was not transformation, but it was a real shift.
