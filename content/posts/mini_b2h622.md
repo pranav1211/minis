@@ -1,6 +1,6 @@
 ---
 id: mini_b2h622
-title: "A Journey - Dopamine Detox"
+title: "A Journey  :  Dopamine Detox"
 date: "2026-04-28"
 time: "12:50"
 tags: ["dopamine","experience","life"]
