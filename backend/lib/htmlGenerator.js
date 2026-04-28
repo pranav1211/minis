@@ -3,6 +3,7 @@ const path = require('path');
 const { marked } = require('marked');
 
 const DIST_DIR = path.resolve(__dirname, '..', '..', 'frontend', 'dist');
+const METADATA_FILE = path.resolve(__dirname, '..', '..', 'content', 'metadata.json');
 const SITE_URL = 'https://minis.beyondmebtw.com';
 
 // Find the CSS path by reading from an existing generated post HTML.
@@ -52,6 +53,101 @@ function getDescription(markdown) {
     return rawText.substring(0, 160) + (rawText.length > 160 ? '...' : '');
 }
 
+function formatRelatedDate(dateStr) {
+    const [year, month, day] = dateStr.split('-').map(Number);
+    return new Date(Date.UTC(year, month - 1, day)).toLocaleDateString('en-US', {
+        year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC'
+    });
+}
+
+function getRelatedExcerpt(rawMarkdown) {
+    return (rawMarkdown || '')
+        .replace(/^---$/gm, '')
+        .replace(/[#*_[\]()>`~]/g, '')
+        .replace(/\n+/g, ' ')
+        .trim()
+        .substring(0, 110);
+}
+
+async function getRelatedPosts(currentId, currentTags) {
+    let allPosts;
+    try {
+        const raw = await fs.readFile(METADATA_FILE, 'utf8');
+        allPosts = JSON.parse(raw);
+    } catch {
+        return [];
+    }
+
+    const sortedOtherPosts = allPosts
+        .filter(p => p.id !== currentId)
+        .sort((a, b) => {
+            const dateA = new Date(`${a.date}T${a.time || '00:00'}:00+05:30`);
+            const dateB = new Date(`${b.date}T${b.time || '00:00'}:00+05:30`);
+            return dateB.getTime() - dateA.getTime();
+        });
+
+    const related = [];
+    const usedIds = new Set();
+
+    for (const tag of (currentTags || []).slice(0, 3)) {
+        const tagged = sortedOtherPosts.find(p =>
+            !usedIds.has(p.id) && (p.tags || []).includes(tag)
+        );
+        if (tagged) {
+            related.push(tagged);
+            usedIds.add(tagged.id);
+        }
+    }
+
+    if (related.length < 3) {
+        for (const p of sortedOtherPosts) {
+            if (related.length >= 3) break;
+            if (!usedIds.has(p.id)) {
+                related.push(p);
+                usedIds.add(p.id);
+            }
+        }
+    }
+
+    return related.map(p => ({
+        id: p.id,
+        title: p.title,
+        date: formatRelatedDate(p.date),
+        tags: (p.tags || []).slice(0, 3),
+        excerpt: getRelatedExcerpt(p.rawMarkdown)
+    }));
+}
+
+function renderRelatedSection(relatedPosts) {
+    if (!relatedPosts.length) return '';
+
+    const cards = relatedPosts.map(p => {
+        const tagsHtml = p.tags.map(t =>
+            `<span class="related-tag">${escapeHtml(t)}</span>`
+        ).join('');
+        const excerptHtml = p.excerpt
+            ? `<div class="related-post-excerpt">${escapeHtml(p.excerpt)}…</div>`
+            : '';
+        return `
+            <a href="/post/${encodeURIComponent(p.id)}" class="related-post-card">
+              <div class="related-post-tags">${tagsHtml}</div>
+              <div class="related-post-title">${escapeHtml(p.title)}</div>
+              <div class="related-post-date">${escapeHtml(p.date)}</div>
+              ${excerptHtml}
+            </a>`;
+    }).join('');
+
+    return `
+        <section class="related-posts">
+          <div class="related-posts-header">
+            <h2>more minis</h2>
+          </div>
+          <div class="related-posts-grid">
+            ${cards}
+          </div>
+        </section>`;
+}
+
 const OG_IMAGE = 'https://content.beyondmebtw.com/assets/projects/minis/minissm.png';
 
 async function generatePostHtml(postData) {
@@ -63,6 +159,8 @@ async function generatePostHtml(postData) {
     const formattedDate = formatDate(date);
     const description = getDescription(content);
     const contentHtml = await marked.parse(content);
+    const relatedPosts = await getRelatedPosts(id, tags);
+    const relatedSectionHtml = renderRelatedSection(relatedPosts);
 
     const tagsMetaTags = tags.map(tag =>
         `<meta property="article:tag" content="${escapeHtml(tag)}">`
@@ -170,6 +268,7 @@ async function generatePostHtml(postData) {
           ${contentHtml}
         </div>
       </article>
+      ${relatedSectionHtml}
     </main>
 
     <footer class="footer">

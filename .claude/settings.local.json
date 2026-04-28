@@ -6,7 +6,11 @@
       "Bash(npx astro build:*)",
       "Bash(find /c/Users/pranav/Documents/BMB/Minis/backend/public -type f -name *.css)",
       "Bash(chmod +x /home/pranav/Desktop/minis/minis-private/shellfiles/updateminisprivate.sh /home/pranav/Desktop/minis/minis-private/shellfiles/minisprivate.sh)",
-      "Bash(node --check backend/public/editor.js)"
+      "Bash(node --check backend/public/editor.js)",
+      "Bash(node -e \"require\\('./lib/htmlGenerator'\\)\")",
+      "Bash(node --check /home/pranav/Desktop/pranav/minis/backend/lib/htmlGenerator.js)",
+      "Bash(npm install *)",
+      "Bash(node -e ' *)"
     ]
   }
 }

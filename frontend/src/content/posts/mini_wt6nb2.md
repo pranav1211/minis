@@ -6,7 +6,7 @@ time: "09:51"
 tags: ["dopamine","detox","life"]
 ---
 
----
+***
 
 It’s been about 3 weeks since my last update on the detox and the silence isn’t failure, it’s progress.
 
@@ -22,6 +22,6 @@ Still, I don’t see this as a step back. It feels more like part of understandi
 
 That’s also why I’m choosing to end this detox after a month. The goal was never complete removal, it was control, and I understand that goal more clearly now than I did at the start. I’ll still falter at times, but even this month has shown me what progress looks like for me. This was never going to be an overnight transformation. It’s slower than that, but maybe that’s what makes it real.
 
-I’ve got a longer blog coming soon where I’ll dive deeper into all of this.
+I’ve got a longer blog coming soon where I’ll dive deeper into all of this. 
 
-Stay tuned.
+Check out the final blog : [A Journey : Dopamine Detox](https://minis.beyondmebtw.com/post/mini_b2h622/)
