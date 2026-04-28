@@ -6,7 +6,8 @@ time: "12:50"
 tags: ["dopamine","experience","life"]
 ---
 
-\-\-\-
+***
+
 Over the past month, I tried something new. It was not a new game or a new movie, it was the opposite. It was the removal of dopamine from my life, or more specifically, the kind of bad dopamine that had quietly turned into reflex.
 
 I meant to write this is a blog post, had it saved but it is too late so here it is.
