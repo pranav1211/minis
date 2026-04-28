@@ -62,6 +62,6 @@ More than anything, this whole experience was eye-opening. It forced me to stop 
 **Thank you for listening!**
 
 ***I wrote minis for each week as it happened, Check them out:***
-**[Dopamine Detox Week 1](https://minis.beyondmebtw.com/post/mini_xx0ai0/)** 
-**[Dopamine Detox Week 2](https://minis.beyondmebtw.com/post/mini_qd1w42/)** 
-**[Dopamine Detox Week 3,4 and The End](https://minis.beyondmebtw.com/post/mini_wt6nb2/)**
+**- [Dopamine Detox Week 1](https://minis.beyondmebtw.com/post/mini_xx0ai0/)** 
+**- [Dopamine Detox Week 2](https://minis.beyondmebtw.com/post/mini_qd1w42/)** 
+**- [Dopamine Detox Week 3,4 and The End](https://minis.beyondmebtw.com/post/mini_wt6nb2/)**
