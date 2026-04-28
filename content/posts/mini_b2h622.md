@@ -20,6 +20,8 @@ What began with Instagram quickly turned into something bigger. Deleting one app
 
 The real issue was the loop itself, the constant need to reach for stimulation, the habit of filling every empty second with noise. Once that became obvious, I went further. I removed short-form social media completely and cut off the easiest doors into mindless scrolling.
 
+***
+
 ### The first week: withdrawal and recalibration
 
 The first week was not some dramatic reinvention. It was awkward, long, and honestly uncomfortable.
@@ -29,6 +31,8 @@ Without the usual scroll cycle, the days felt stretched out. My fingers felt res
 But once that initial agitation passed, something else started to happen.
 My attention felt less fragmented. I could focus better, enjoy things more fully, and spend time on work or small creative improvements without splitting my mind every few minutes. It was not transformation, but it was a real shift.
 
+***
+
 ### The second week: more control, one clear slip
 
 By the second week, things felt steadier.
@@ -37,6 +41,8 @@ The urge to scroll was no longer dominating entire days. Work felt normal, colle
 
 What made that frustrating was not just the time lost, but the fact that it broke my focus while I was trying to enjoy something I actually cared about. That was when the difference became clearer. This was never really about scrolling being evil. It was about how easily it interrupts the things that matter more.
 
+***
+
 ### The final stretch: understanding the real issue
 
 The last two weeks were quieter, and that silence itself felt meaningful.
@@ -44,6 +50,8 @@ The last two weeks were quieter, and that silence itself felt meaningful.
 There was less drama because there was less compulsion. Workdays especially felt more under control, partly because routine kept me busy and left less room for mindless habits to creep back in. The harder part was the weekends. That was where the real weakness showed up, not addiction in some dramatic sense, but a lack of structure.
 
 When I was tired and had too much unshaped time, drifting became easier. I could still slip into doomscrolling or avoid the things I actually cared about. But by then, it did not feel like failure. It felt like understanding the pattern more honestly.
+
+***
 
 ### What I got out of it
 
@@ -62,6 +70,6 @@ More than anything, this whole experience was eye-opening. It forced me to stop 
 **Thank you for listening!**
 
 ***I wrote minis for each week as it happened, Check them out:***
-**- [Dopamine Detox Week 1](https://minis.beyondmebtw.com/post/mini_xx0ai0/)** 
-**- [Dopamine Detox Week 2](https://minis.beyondmebtw.com/post/mini_qd1w42/)** 
-**- [Dopamine Detox Week 3,4 and The End](https://minis.beyondmebtw.com/post/mini_wt6nb2/)**
+**[Dopamine Detox Week 1](https://minis.beyondmebtw.com/post/mini_xx0ai0/)** 
+**[Dopamine Detox Week 2](https://minis.beyondmebtw.com/post/mini_qd1w42/)** 
+**[Dopamine Detox Week 3,4 and The End](https://minis.beyondmebtw.com/post/mini_wt6nb2/)**
