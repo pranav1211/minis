@@ -44,7 +44,7 @@ On the review side, I published three pieces: *How to Make a Killing*, *Parasite
 
 ***
 
-### **Building, Fixing, and Making Life Easier**
+## **Building, Fixing, and Making Life Easier**
 
 Work has been going well. There are moments where monotony creeps in, but it doesn’t stick around for long.
 
@@ -59,7 +59,7 @@ And in the process, I ended up learning a lot about encryption and handling sens
 
 ***
 
-### **Building for Myself (And Why That Matters)**
+## **Building for Myself (And Why That Matters)**
 
 My Beyond Money app is coming along really well. It’s still primarily something I built for myself, but that’s exactly why it works.
 
