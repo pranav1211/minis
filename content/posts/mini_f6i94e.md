@@ -92,7 +92,7 @@ The [MyNyl](https://mynyl.beyondmebtw.com/) project sent me down a rabbit hole w
 I also built a table of contents extension for Medium exactly the way I wanted it. I didn’t put it on the Chrome Web Store because I didn’t want to pay the fee yet, but it exists, and it works:
 [https://github.com/pranav1211/toc-medium-by-bmb](https://github.com/pranav1211/toc-medium-by-bmb)
 
-Another rabbit hole was subdomains and then nested subdomains. I reworked my Gradient Club site and linked it to BeyondMeBtw, so now it sits at [https://gradientclub.beyondmebtw.com.](https://gradientclub.beyondmebtw.com.) It’s long, but it feels like a proper identity compared to a /projects/gradientclub structure.
+Another rabbit hole was subdomains and then nested subdomains. I reworked my Gradient Club site and linked it to BeyondMeBtw, so now it sits at [https://gradientclub.beyondmebtw.com](https://gradientclub.beyondmebtw.com.) It’s long, but it feels like a proper identity compared to a /projects/gradientclub structure.
 
 And then I took it further. Nested subdomains like [https://openhouse2026.gradientclub.beyondmebtw.com](https://openhouse2026.gradientclub.beyondmebtw.com) started showing up. They’re long, slightly ridiculous, but functional and honestly, kind of fun. At the end of the day, it’s just a link people click.
 
