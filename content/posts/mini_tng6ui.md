@@ -32,7 +32,7 @@ And that’s it. It’s not deeper than that. Not writing about something isn’
 
 ***
 
-## **The “I Did Nothing” Lie**
+### The “I Did Nothing” Lie
 
 There was this running thought all month that I hadn’t really done anything. That I’d just let time pass. Then I actually sat down and asked myself "what did I *actually* do?"
 
