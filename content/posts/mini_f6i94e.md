@@ -38,9 +38,9 @@ There was this running thought all month that I hadn’t really done anything. T
 
 And the answer was… quite a bit.
 
-I finished my recaps of the Chinese and Japanese Grand Prix. They were late, yes, but they were good. The five-week break in the calendar helped more than I expected, it gave me space to not rush, to recalibrate instead of forcing output.
+I finished my recaps of the [Chinese](https://medium.com/@beyondmebtw/the-2026-chinese-grand-prix-recap-852203c5935f) and [Japanese](https://medium.com/@beyondmebtw/the-2026-japanese-grand-prix-recap-7cbb825fc5c1) Grand Prix. They were late, yes, but they were good. The five-week break in the calendar helped more than I expected, it gave me space to not rush, to recalibrate instead of forcing output.
 
-On the review side, I published three pieces: *How to Make a Killing*, *Parasite*, and *Beef Season 2*. The last one was unexpected. I didn’t plan on writing about it, but I liked it enough that the transition from “I enjoyed this” to “I want to write about this” felt effortless. That kind of conversion is what I’m starting to value more. It doesn’t mean I didn’t like other things, it just means I chose to spend my time on something that felt worth it.
+On the review side, I published three pieces:[ ](https://medium.com/@beyondmebtw/how-to-make-a-killing-movie-review-65788b20ccaa)*[How to Make a Killing](https://medium.com/@beyondmebtw/how-to-make-a-killing-movie-review-65788b20ccaa)*, *[Parasite](https://medium.com/@beyondmebtw/parasite-movie-review-38fe8160ed7f)*, and *[Beef Season 2](https://medium.com/@beyondmebtw/beef-season-2-review-257617ea7678)*. The last one was unexpected. I didn’t plan on writing about it, but I liked it enough that the transition from “I enjoyed this” to “I want to write about this” felt effortless. That kind of conversion is what I’m starting to value more. It doesn’t mean I didn’t like other things, it just means I chose to spend my time on something that felt worth it.
 
 ***
 
