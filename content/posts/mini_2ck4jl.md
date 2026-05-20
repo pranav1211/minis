@@ -48,4 +48,4 @@ I know now that whenever I think too far ahead, I can’t help but see sadness.
 
 Dissecting *why* is for another day.
 
-*Que sera sera.*
+***Que sera sera.***
