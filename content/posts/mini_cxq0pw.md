@@ -4,6 +4,7 @@ title: "The Problem is Me (and So Is the Solution)"
 date: "2025-11-30"
 time: "23:52"
 tags: ["blog","project","growth"]
+featuredExcerpt: "I’m finally back with a live blog, it’s been a while. I’ve still been writing: show reviews, bits about life, and recently, that whole journey with the DepthAI project. But this one hits differently. This one comes after getting hit with a brick. Not literally… though honestly, that might feel easier than what this past quarter has been. When I look back at the last three months, I’ve been carrying the entire software world’s sins on my…"
 ---
 
 ---

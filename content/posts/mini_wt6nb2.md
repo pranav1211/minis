@@ -4,6 +4,7 @@ title: "Dopamine Detox Week 3, 4 and The End"
 date: "2026-03-22"
 time: "09:51"
 tags: ["dopamine","detox","life"]
+featuredExcerpt: "It’s been about 3 weeks since my last update on the detox and the silence isn’t failure, it’s progress. Work has been intense in a good way. I’ve been locked in for 7–8 hours most days, and by the time I’m done, there’s barely any space left to mindlessly scroll. That alone feels like a shift. I am using it again, but it feels different now, more intentional. A couple of minutes here and there during work, mostly out of boredom, not habit or…"
 ---
 
 ***

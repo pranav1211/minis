@@ -4,6 +4,7 @@ title: "Life is going on"
 date: "2026-03-15"
 time: "21:27"
 tags: ["blog","life","growth","software","experience"]
+featuredExcerpt: "It’s Sunday evening and I’m back at the keyboard, working through my recap for the Chinese Sprint while knowing that the full race blog still waits for me. One thing that’s becoming increasingly clear this season is just how much there is to write about. My recap of the opening race in Australia was already around 4.5K words, and that was just following my normal structure. There’s simply more happening, more narratives to follow, more moments…"
 ---
 
 ---

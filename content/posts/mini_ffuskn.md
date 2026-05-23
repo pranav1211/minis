@@ -4,6 +4,7 @@ title: "The First of Many"
 date: "2025-08-20"
 time: "20:02"
 tags: ["blog","first","project"]
+featuredExcerpt: "The wait is finally over! After 2 weeks, and roughly 12 hours of development — it’s here. I present to you Minis by Beyond Me Btw. A live blogging platform where I can share quick updates and thoughts that don’t need a fully produced blog post. It could be a small discovery in tech, a movie review I didn’t enjoy, or just something I feel like talking about. With Minis, I can give live commentary on projects without waiting until the very end.…"
 ---
 
 ---

@@ -4,6 +4,7 @@ title: "The Subtle Art of Not Fucking Up a Prompt"
 date: "2026-04-03"
 time: "17:31"
 tags: ["ai","blog","project","experience"]
+featuredExcerpt: "This is a story of two builds. Both are about creating an application, but they couldn’t be more different in how they demanded to be approached. Over the past few months, I’ve been using Claude Code, learning what works, what doesn’t, how to push it, and how to recover when things break. Usually, I work on one project at a time, and my thinking stays aligned with that. My prompts follow a rhythm, and things flow. Recently, that changed. I found…"
 ---
 
 ***

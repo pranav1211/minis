@@ -4,6 +4,7 @@ title: "January 2026 Review — Getting Started"
 date: "2026-02-03"
 time: "12:05"
 tags: ["blog","life","month review","project"]
+featuredExcerpt: "Welcome to a new series.This is a monthly review, sometimes short, sometimes long, always messy. The goal is simple: reflect on what was done and figure out what needs to be done next. No rules. Let’s get into it. January flew by. It’s wild how so much happened, yet it still feels like the year started yesterday. On the blog front, I only published two posts: my 2025 yearly recap and The Running Man movie review. I wanted to write more, but I’m…"
 ---
 
 ***

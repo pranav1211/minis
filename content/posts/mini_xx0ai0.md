@@ -4,6 +4,7 @@ title: "Dopamine Detox Week 1"
 date: "2026-02-25"
 time: "15:23"
 tags: ["blog","life","detox","dopamine"]
+featuredExcerpt: "This week I removed short-form social media from my phone. I am on a journey as I try to remove all the bad dopamine from my life and put into something more fulfilling and fun. Firstly, Why? Saturday (14/02/26) started the way a lot of these things start unintentionally. It was 2 a.m. and I was on Instagram Reels and somewhere in that haze I had this sharp, uncomfortable question: why am I doing this? Not in a dramatic way. Not in a self-hate…"
 ---
 
 ---

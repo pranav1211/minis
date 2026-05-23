@@ -4,6 +4,7 @@ title: "A Futuristic Retrospective"
 date: "2026-05-20"
 time: "23:34"
 tags: ["life","future","my mind"]
+featuredExcerpt: "I have this thing where I’m unable to see the future. I struggle imagining myself at 40, or 30, or even in the next two months. This consciousness came about around four years ago when I started college and suddenly had structure, movement and things to do. Since then I’ve lived every moment as fully as I could. I stay in the present as much as possible, I remember it all and honestly it has been fun. But when it comes to what will happen next,…"
 ---
 
 ***

@@ -4,6 +4,7 @@ title: "Dopamine Detox Week 2"
 date: "2026-03-03"
 time: "12:25"
 tags: ["detox","dopamine","life"]
+featuredExcerpt: "Welcome back. Because I made it another week. I’m not doing the day-by-day breakdown this time. There isn’t much to narrate in that format, so let’s just get into it. This is from (23/2/26 - 2/3/26) Overall, the week went decent. Monday to Wednesday I was working from home. I got my work done. I didn’t feel the need to use Instagram or scroll mindlessly. I filled my time with TV shows and games instead. It felt controlled. It felt intentional.…"
 ---
 
 ---

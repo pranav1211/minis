@@ -4,6 +4,7 @@ title: "A Realization : Lumex Project"
 date: "2025-09-03"
 time: "22:54"
 tags: ["project","computer vision","ai","software"]
+featuredExcerpt: "This is a continuation of me working on my big project, and I’ve made some progress. I broke things down to the core basics of what I’m actually trying to do. After some deep digging (and a stressful back-and-forth with AI), I realized that the repo I was relying on which I already knew was 4 years old, was simply too flawed to sit and fix. I tried starting from scratch, but then I hit the real issue: AI itself. AI is good, no doubt. Without it,…"
 ---
 
 ---

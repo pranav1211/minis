@@ -2,6 +2,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const matter = require('gray-matter');
 const { marked } = require('marked');
+const { generateFeaturedExcerpt } = require('./excerpt');
 
 async function regenerateMetadata(contentDir, metadataFile) {
     const files = await fs.readdir(contentDir);
@@ -18,6 +19,7 @@ async function regenerateMetadata(contentDir, metadataFile) {
             date: data.date,
             time: data.time,
             tags: data.tags || [],
+            featuredExcerpt: data.featuredExcerpt || generateFeaturedExcerpt(trimmedContent),
             content: await marked.parse(trimmedContent),
             rawMarkdown: trimmedContent
         });

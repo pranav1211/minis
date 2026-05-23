@@ -4,6 +4,7 @@ title: "April 2026 Review - Well Well Hell"
 date: "2026-05-05"
 time: "16:27"
 tags: ["blog","growth","month review"]
+featuredExcerpt: "Kinda enjoying using the word “hell” in the title for these monthly reviews. May the fifth be with you. I wanted to post this yesterday on May the fourth so I could lean into the Star Wars bit, but I was too tired. That’s not stopping me from making the joke now. April was an interesting month, no doubt. A lot happened personally, in the world and through all of that, I’m still here. That matters more than I give it credit for. On Writing,…"
 ---
 
 ***

@@ -9,6 +9,7 @@ const posts = defineCollection({
         date: z.string(),
         time: z.string(),
         tags: z.array(z.string()),
+        featuredExcerpt: z.string().optional(),
     }),
 });
 

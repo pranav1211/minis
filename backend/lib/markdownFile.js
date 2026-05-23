@@ -1,6 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 const matter = require('gray-matter');
+const { generateFeaturedExcerpt } = require('./excerpt');
 
 function escapeYamlString(str) {
     return `"${str.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`;
@@ -15,6 +16,7 @@ async function readPost(contentDir, id) {
 
 async function writePost(contentDir, postData) {
     const { id, title, date, time, tags, content } = postData;
+    const featuredExcerpt = generateFeaturedExcerpt(content);
 
     const frontmatter = [
         '---',
@@ -23,6 +25,7 @@ async function writePost(contentDir, postData) {
         `date: "${date}"`,
         `time: "${time}"`,
         `tags: ${JSON.stringify(tags)}`,
+        `featuredExcerpt: ${escapeYamlString(featuredExcerpt)}`,
         '---'
     ].join('\n');
 

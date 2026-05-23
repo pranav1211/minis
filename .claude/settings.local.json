@@ -10,7 +10,14 @@
       "Bash(node -e \"require\\('./lib/htmlGenerator'\\)\")",
       "Bash(node --check /home/pranav/Desktop/pranav/minis/backend/lib/htmlGenerator.js)",
       "Bash(npm install *)",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" scripts/addFeaturedExcerpt.js)",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" ../scripts/addFeaturedExcerpt.js)",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" \"/c/Program Files/nodejs/node_modules/npm/bin/npm-cli.js\" install)",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" \"c:/Users/pranav/Documents/BMB/Minis/scripts/addFeaturedExcerpt.js\")",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" \"c:/Users/pranav/Documents/BMB/Minis/scripts/generateMetadata.js\")",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" -e \"const d=require\\('./content/metadata.json'\\); console.log\\('keys:', Object.keys\\(d[0]\\)\\); console.log\\('sample featuredExcerpt:', JSON.stringify\\(d[0].featuredExcerpt\\).slice\\(0,200\\)\\);\")",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" -e \"const d=require\\('c:/Users/pranav/Documents/BMB/Minis/content/metadata.json'\\); console.log\\('keys:', Object.keys\\(d[0]\\)\\); console.log\\('sample featuredExcerpt:', JSON.stringify\\(d[0].featuredExcerpt\\).slice\\(0,300\\)\\);\")"
     ]
   }
 }
