@@ -4,6 +4,7 @@ title: "February 2026 Review - What The Hell"
 date: "2026-03-02"
 time: "11:45"
 tags: ["month review","blog","life"]
+featuredExcerpt: "What the hell indeed. I genuinely have no idea how February went by so fast. It feels like just a week ago I wrote my January review. But time doesn’t wait for anyone, so let’s get on with it. I don’t remember much from the start of the month, but looking back at my notes, it’s all coming back. I worked on some computer vision projects for work. I’ve learned a lot and it’s a really interesting field, and I can feel myself getting more…"
 ---
 
 ---

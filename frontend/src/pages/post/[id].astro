@@ -213,4 +213,55 @@ const blueskyShareUrl = `https://bsky.app/intent/compose?text=${encodeURICompone
             } catch (e) {}
         });
     }
+
+    // Image lightbox: click a post image to expand it; show alt text as description.
+    const lightboxImages = document.querySelectorAll('.post-content img');
+    if (lightboxImages.length) {
+        const overlay = document.createElement('div');
+        overlay.className = 'lightbox-overlay';
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.innerHTML =
+            '<button class="lightbox-close" type="button" aria-label="Close">&times;</button>' +
+            '<figure class="lightbox-figure">' +
+                '<img alt="">' +
+                '<figcaption class="lightbox-caption"></figcaption>' +
+            '</figure>';
+        document.body.appendChild(overlay);
+
+        const lbImg = overlay.querySelector('.lightbox-figure img');
+        const lbCap = overlay.querySelector('.lightbox-caption');
+        const lbClose = overlay.querySelector('.lightbox-close');
+
+        const descriptionOf = (alt) => {
+            const a = (alt || '').trim();
+            return (a && a.toLowerCase() !== 'image') ? a : '';
+        };
+
+        const openLightbox = (src, alt) => {
+            lbImg.src = src;
+            lbImg.alt = alt || '';
+            const caption = descriptionOf(alt);
+            lbCap.textContent = caption;
+            lbCap.style.display = caption ? 'block' : 'none';
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeLightbox = () => {
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+            lbImg.removeAttribute('src');
+        };
+
+        lightboxImages.forEach((img) => {
+            img.addEventListener('click', () => openLightbox(img.currentSrc || img.src, img.getAttribute('alt')));
+        });
+        overlay.addEventListener('click', closeLightbox);
+        lbImg.addEventListener('click', (e) => e.stopPropagation());
+        lbClose.addEventListener('click', closeLightbox);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay.classList.contains('open')) closeLightbox();
+        });
+    }
 </script>

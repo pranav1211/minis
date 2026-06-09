@@ -4,6 +4,7 @@ title: "Triple Threat"
 date: "2025-08-21"
 time: "21:59"
 tags: ["movie","movie review"]
+featuredExcerpt: "I ended up watching Venom 3: The Last Dance, Kraven the Hunter, and Madame Web back to back. Venom was fine, but the other two, oh my god. I’d heard the talk about how bad they were when they first released, but seeing them myself was something else entirely. Some of them don’t even warrant full reviews, so here are three short ones instead. Venom: The Last Dance (2024) It’s dumb, but it’s sweet and somehow that’s exactly why it works. Probably…"
 ---
 
 ---

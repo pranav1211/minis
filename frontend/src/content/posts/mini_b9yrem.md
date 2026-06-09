@@ -4,6 +4,7 @@ title: "March 2026 Review - In hell"
 date: "2026-04-03"
 time: "18:43"
 tags: ["blog","month review","project","life","experience"]
+featuredExcerpt: "Well, what a month. Wars, drama, desperation—January and February felt relatively calm in comparison. Sure, things still happened, but March was hectic. But we’re not here to talk about the world, we’re here to talk about me, and honestly, I don’t remember much of it. It’s mostly been work, non-stop, but it’s been interesting. I’ve been learning a lot, and it feels more like an experience than a routine, which I think matters. On the blog side…"
 ---
 
 ***

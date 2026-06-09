@@ -4,6 +4,7 @@ title: "Decent Progress : Lumex Project"
 date: "2025-09-11"
 time: "21:18"
 tags: ["project","computer vision","ai","software"]
+featuredExcerpt: "Progress Update Over the past couple of days, I focused on getting the DepthAI AAR properly configured and integrated. For context, the AAR is essentially a packaged library (like a zip file) that contains the critical components of the DepthAI module, including the firmware and essential functionality. Previously, I discovered that the Bytedeco C++ library worked with DepthAI but only supported the camera itself. not the USB connection. The…"
 ---
 
 ---

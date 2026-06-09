@@ -4,6 +4,7 @@ title: "The Runtime Quandary"
 date: "2026-02-19"
 time: "23:29"
 tags: ["project","computer vision"]
+featuredExcerpt: "I’m working a computer vision project on the web, Running Roboflow’s detection transformer model through Transformers.js v4 on a live camera feed. Detection, tracking, segmentation, all in-browser. On paper, it sounds clean but Transformers.js is an abstraction over ONNX Runtime Web. I’ve worked with ONNX Runtime Web directly before so this should’ve been straightforward. It wasn’t. What finally broke the deadlock wasn’t some grand architectural…"
 ---
 
 ---
