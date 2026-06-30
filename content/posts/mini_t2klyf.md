@@ -3,7 +3,8 @@ id: mini_t2klyf
 title: "May 2026 Review - Hell Hath No Fury Like The Space In Between"
 date: "2026-06-01"
 time: "15:30"
-tags: ["movie review","growth","life"]
+tags: ["growth","life","month review"]
+featuredExcerpt: "As The Title Says, It Has Been A Messy Month A lot has happened this month, both personally and on the blog side of things, so let's get into it. On the personal front, college has technically ended. I penned my last exam paper and stood in my department as a student for the final time. There is still administrative work left to do, but academically, it is over. I no longer have a reason to simply go to college, attend classes, and come back…"
 ---
 
 ***
