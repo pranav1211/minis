@@ -41,7 +41,7 @@ Nothing revolutionary, just a collection of little improvements I'd wanted for a
 
 I also made a few more Mynyl vinyl designs. They're getting there, but I think my focus now needs to shift away from making more designs and towards improving the overall experience. A proper landing page, better navigation, and something that feels inviting instead of immediately throwing users into the deep end.
 
-Do check them out! [https://f1hapticandroid.beyondmebtw.com](https://f1haptictrailer.beyondmebtw.com) & [https://mynyl.beyondmebtw.com](https://mynyl.beyondmebtw.com)
+Do check them out! [https://f1hapticandroid.beyondmebtw.com](https://f1hapticandroid.beyondmebtw.com/) & [https://mynyl.beyondmebtw.com](https://mynyl.beyondmebtw.com)
 
 As for everything else I want to build, we'll see.
 
