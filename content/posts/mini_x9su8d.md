@@ -1,11 +1,13 @@
 ---
 id: mini_x9su8d
-title: "A Spoonful of Hell"
+title: "June 2026 Review - A Spoonful of Hell"
 date: "2026-07-02"
 time: "15:59"
 tags: ["month review","life","experience","growth"]
 featuredExcerpt: "This month felt like a spoonful of hell. Not a bucket. Not a bowl. Just enough to remind you that life can get messy without completely falling apart. There were moments that were genuinely difficult, moments that were unbelievably boring, and somehow the whole thing disappeared before I even had time to process it. June genuinely went by in a blur. Work consumed almost the entire month. It was one deadline after another, and I even ended up…"
 ---
+
+***
 
 This month felt like a spoonful of hell.
 
