@@ -7,6 +7,8 @@ tags: ["growth","lost","life","enigma"]
 featuredExcerpt: "For the first time in almost four years, I don't really know what to do. The last time I felt lost was different. I knew exactly what needed to be done, I just wasn't doing it. There was guilt attached to it, unfinished work sitting quietly in the back of my mind. This time it feels different. There are things pending of course but they don't bother me. I know they'll get done eventually. The question isn't what I need to finish. It's simply,…"
 ---
 
+***
+
 For the first time in almost four years, I don't really know what to do.
 
 The last time I felt lost was different. I knew exactly what needed to be done, I just wasn't doing it. There was guilt attached to it, unfinished work sitting quietly in the back of my mind. This time it feels different. There are things pending of course but they don't bother me. I know they'll get done eventually.
