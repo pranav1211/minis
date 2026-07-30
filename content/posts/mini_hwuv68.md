@@ -35,28 +35,6 @@ As I'm writing this, I'm realizing something. I started this entry thinking I ha
 
 ***
 
-A few weeks ago I bought something for around twenty-five dollars.
-
-The details don't really matter. What matters is what it taught me.
-
-I bought it because I wanted to know what it felt like to own one. The first day was exciting. Then this little asshole in the back of my mind woke up and refused to shut up. Every time I used it, I immediately started thinking about where I'd hide it afterwards, whether someone would find it, whether I should move it somewhere else. It slowly stopped being something I owned and became something I managed.
-
-The first week I used it every now and then. The second week I was sick, so I barely touched it. By the third week I wasn't even interested anymore. Then one night, around one-thirty in the morning, I went through the whole routine again. Use it, put it away, make sure it's hidden properly, check again before going to sleep. Halfway through I realized something. If this is what I have to do just to enjoy owning something, then I'll never actually enjoy owning it.
-
-So the next day I threw it away.
-
-There wasn't a dramatic moment. No huge sense of relief. No feeling that I'd just made some life-changing decision. But somewhere underneath all the conscious thought, in the place where that little asshole had been living for weeks, there was silence. That silence was worth far more than twenty-five dollars.
-
-I don't regret buying it, and I certainly don't regret throwing it away. The money stopped mattering the moment I realised it had become a sunk cost. Nothing I did afterwards was going to change that. What mattered was how much space it occupied inside my head.
-
-The device itself wasn't bad. I actually enjoyed using it. Maybe one day I'll buy another version. Maybe a smaller one. Maybe I won't. I'm not even thinking about that right now because that isn't the lesson.
-
-The lesson is that I completely overestimated the value it would add to my life. More importantly, I underestimated how much of my mind it would occupy.
-
-It was a useful lesson, one I'm glad I learned firsthand. Dwelling on the purchase or the money serves no purpose now. The only thing left to do is learn from it and move forward, and that's exactly what's happening.
-
-***
-
 On a much lighter note, I bought an 8BitDo Ultimate 2C Wireless controller and I love it.
 
 I've been playing F1 2020 almost every evening after work and it's genuinely some of the most fun I've had playing a game in years. I finished an entire season on medium difficulty with a decent number of assists turned on and going into the second season I've started switching a few of them off while keeping things like traction control and ABS because that's simply more enjoyable for me.
