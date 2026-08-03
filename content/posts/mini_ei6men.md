@@ -13,7 +13,7 @@ And just like that, another month went by.
 
 Once again, work consumed quite a bit of my time. One thing I did like about July was that it ended on a Friday, and a new month started on a Saturday, essentially leading into Monday. It feels like a nice, clean reset, a fresh way to look at things.
 
-Looking back at everything I wanted to finish in July, I didn't get through most of it. I never finished my Arrowverse recap, nor did I finish my review of *Project Hail Mary*. I only posted one movie review, *Supergirl*, and between you and me, I actually watched the cam-rip version first. I did go back and watch the digital release when it came out, but my review still stands. Consider checking it out: Supergirl Movie Review
+Looking back at everything I wanted to finish in July, I didn't get through most of it. I never finished my Arrowverse recap, nor did I finish my review of *Project Hail Mary*. I only posted one movie review, *Supergirl*, and between you and me, I actually watched the cam-rip version first. I did go back and watch the digital release when it came out, but my review still stands. Consider checking it out: [Supergirl Movie Review](https://medium.com/@beyondmebtw/supergirl-movie-review-22b9a935f8f6)
 
 I also posted two race recaps, but I still have another two pending. One is now two weeks late, and the other is one week late. It's not that I hate writing them, but some of the fans of certain drivers are just so fucking annoying that they genuinely make me lose my mind sometimes. Either way, those two are definitely going out today, along with another review.
 
