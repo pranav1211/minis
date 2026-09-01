@@ -50,4 +50,5 @@ All that makes me feel very lonely, which makes me feel what doesn't kill you, m
 ## Fin
 
 I don't know what the month holds for me, and I am tired of setting goals I know I will fail.
+
 Until next time.
