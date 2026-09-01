@@ -28,6 +28,7 @@ I saw Spider-Man: Brand New Day and need to give it a review, but the main thing
 As for Odyssey, ticket prices are finally something I can manage and afford to pay, but timings and work sometimes don't let me. And it gets booked like crazy even though there are only two showings a day. Let's hope I can get a ticket soon, because I kinda just wanna do something.
 
 I also did start working on my backend architecture migration and stuff for my website and thats going fine. working on 2 new apps, an app lock and a stats for my medium account.
+
 I recently got *The Dark Knight* and *The Dark Knight Rises* movie in a 1.43 download and by god, I get the hype. It's so beautiful, and I'm actually really enjoying learning about these aspect ratios and stuff, especially for movies. But the 1.43 shots of the movie were just so beautiful. I mean, my PC caps out at 1920 × 1080, but if I do get a chance to see this on a TV or a bigger screen that can support the resolution, my mind will be blown. This was a fun thing I did a couple weeks back so wanna share it.
 
 ***
