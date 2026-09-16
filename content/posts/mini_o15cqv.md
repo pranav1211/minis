@@ -41,7 +41,7 @@ This month has been another lull in adulthood, and today I realised I'm in this 
 
 I work with my father, and that's not the problem. But it's like I come back home, make myself dinner, and then do my stuff. It's this weird imbalance of being far and close, and both are comfortable for me, but it can get dull sometimes.
 
-All throughout this time I have no one to talk to about things except maybe writing some fanfiction and imagining things, and that is at times really depressing no matter how much I might like the fake love.
+All throughout this time I have no one to talk to about things except maybe writing some stories and imagining things, and that is at times really depressing no matter how much I might like the fantasies.
 
 All that makes me feel very lonely, which makes me feel what doesn't kill you, makes you wish you died anyway.
 
