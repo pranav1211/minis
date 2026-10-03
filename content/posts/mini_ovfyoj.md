@@ -49,6 +49,8 @@ The decisions are sometimes so completely against what the viewer might expect, 
 
 This rewatch has really made me think about messaging, character arcs and what actually makes a decision or storyline feel “bad”. Sometimes it isn’t bad writing, it’s just a character doing something you don’t agree with and maybe that is the point. I do have a new series in the works called *The Retrospective*, basically about shows and movies I watched before I started properly reviewing and rewatching things, and I think I’ll do *Billions* once I finish this rewatch.
 
-Projects and tech didn’t have time to work on stuff. My backend migration has been on hiatus and stuff. Let’s see where the month takes us. It is gonna be a long one, a short one and one that will be a test of me in this world.
+Projects and tech didn’t have time to work on stuff. My backend migration has been on hiatus and stuff. 
+
+Let’s see where the month takes us. It is gonna be a long one, a short one and one that will be a test of me in this world.
 
 **Take care and see you soon.**
