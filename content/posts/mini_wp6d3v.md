@@ -4,19 +4,18 @@ title: "The Unbalanced Equation"
 date: "2026-10-26"
 time: "19:17"
 tags: ["struggle","life","conflict"]
-featuredExcerpt: "<br The beauty of exploring the unknown is that, without realising it, you have a purpose. Even if you might not feel like it, there is something that drives and pushes you without you ever knowing it. I don't know what that purpose is for me. I feel like there is nothing going on in my life, and I wonder if there ever will be. It's not that I'm incapable. It's that the sheer act of trying to figure out the future seems impossible to me. I don't…"
+featuredExcerpt: "The beauty of exploring the unknown is that, without realising it, you have a purpose. Even if you might not feel like it, there is something that drives and pushes you without you ever knowing it. I don't know what that purpose is for me. I feel like there is nothing going on in my life, and I wonder if there ever will be. It's not that I'm incapable. It's that the sheer act of trying to figure out the future seems impossible to me. I don't…"
 ---
 
 ***
 
-<br>
 The beauty of exploring the unknown is that, without realising it, you have a purpose. Even if you might not feel like it, there is something that drives and pushes you without you ever knowing it.
 
 I don't know what that purpose is for me. I feel like there is nothing going on in my life, and I wonder if there ever will be. It's not that I'm incapable. It's that the sheer act of trying to figure out the future seems impossible to me. I don't know where I'll be in five years. Hell, I don't even know what will happen next week. But is that so bad?
 
 ***
 
-I don't like the term *self-awareness* because it's too broad and is often used to create a group of people who believe they're better than everyone else. I used to think I was self-aware and took pride in it, but then I saw so many people calling themselves self-aware that I realised it's not that special. 
+I don't like the term *self-awareness* because it's too broad and is often used to create a group of people who believe they're better than everyone else. I used to think I was self-aware and took pride in it, but then I saw so many people calling themselves self-aware that I realised it's not that special.
 
 Everyone is self-aware. Everyone knows what they do. While the ideas of the conscious and subconscious exist, they're still all a part of you. Choosing to do something different from others doesn't make you self-aware because the sum of everything in your life has shaped your decision to do it in the first place.
 
