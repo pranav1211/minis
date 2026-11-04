@@ -45,7 +45,7 @@ But it does make me sit down and ask myself a question: **What is success for me
 
 ***
 
-### **How do I make myself believe I'm not a failure and everything is going to shit?**
+## **How do I make myself believe I'm not a failure and everything is going to shit?**
 
 I'll start by asking myself whether my life is truly static. Do I really not have literally anything going on? Am I just waking up, brushing my teeth, going to work, working, coming back, eating, sleeping and doing it all over again?
 I think writing this mini itself says that isn't the case.
