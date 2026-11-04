@@ -82,7 +82,7 @@ Today, the 4th, I think I'll print the new halo and fix that. I should be able t
 
 ***
 
-#### Audio
+## Audio
 
 I have these knockoff AirPods Max, and I've been looking for headphones but I'm not paying that much for a pair, even if an angel is going to sing in my ears. One of the arm broke, so I repaired it, and now they sit properly on my head again.
 
@@ -97,7 +97,7 @@ The wireless headphones are nice. I can walk around wearing them, and even when 
 
 ***
 
-#### Pokémon
+## Pokémon
 
 Another fun thing I did was collect these Pokémon themed delivery bags from Blinkit, the quick-commerce app. I'd heard about them before but never actually came across one, so I didn't know how much I would like them. When I finally got my hands on one, I loved it.
 
@@ -107,7 +107,7 @@ I really like how they look. I've set them up on this wall bookshelf I have, and
 
 ***
 
-#### Beyond Money
+## Beyond Money
 
 My money app, Beyond Money, which I use to track my personal finances, finally received an update to its public version. It's been almost six months since the last update, so this was long overdue. The reason it finally happened was that I was a bit bored and decided to completely overhaul the design of the app.
 
