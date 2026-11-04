@@ -57,8 +57,7 @@ Let's take a proper look at my life. What am I doing outside the routine? Not go
 
 ***
 
-#### Papercraft
-
+## Papercraft
 
 I started building a papercraft model of an F1 car, the Red Bull RB21 in its 2025 Japanese GP livery. I love that design so much that when I came across a Reddit post where someone had built one, I said to myself that I must have it.
 
@@ -100,7 +99,6 @@ The wireless headphones are nice. I can walk around wearing them, and even when 
 
 #### Pokémon
 
-
 Another fun thing I did was collect these Pokémon themed delivery bags from Blinkit, the quick-commerce app. I'd heard about them before but never actually came across one, so I didn't know how much I would like them. When I finally got my hands on one, I loved it.
 
 I first got Jolteon and Vaporeon, and I ended up painting them. Later, I got Blastoise and Onix and that was even more fun because I learnt different painting techniques.
@@ -110,7 +108,6 @@ I really like how they look. I've set them up on this wall bookshelf I have, and
 ***
 
 #### Beyond Money
-
 
 My money app, Beyond Money, which I use to track my personal finances, finally received an update to its public version. It's been almost six months since the last update, so this was long overdue. The reason it finally happened was that I was a bit bored and decided to completely overhaul the design of the app.
 
