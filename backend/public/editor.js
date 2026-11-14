@@ -31,20 +31,31 @@ class MinisEditor {
 
     // ── Auth ──
 
+    // "Sign in with Manage": each service (public /api, private /private) keeps its own
+    // session cookie. Any 401 sends the browser through that service's sign-in, which
+    // returns here immediately when the Manage session is already active.
     setupAuth() {
-        const isAuthenticated = this.getCookie('beyondme_auth');
-        if (!isAuthenticated || isAuthenticated !== 'true') {
-            window.location.href = 'https://manage.beyondmebtw.com';
-            return;
-        }
-        if (!this.getCookie('beyondme_auth_key')) {
-            window.location.href = 'https://manage.beyondmebtw.com';
-            return;
-        }
-        document.getElementById('logout-btn').addEventListener('click', () => {
-            document.cookie = 'beyondme_auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.beyondmebtw.com';
-            document.cookie = 'beyondme_auth_key=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.beyondmebtw.com';
-            window.location.href = 'https://manage.beyondmebtw.com';
+        const nativeFetch = window.fetch.bind(window);
+        window.fetch = async (input, init) => {
+            const res = await nativeFetch(input, init);
+            if (res.status === 401) {
+                const url = String(input && input.url ? input.url : input);
+                const back = encodeURIComponent('/editor/');
+                if (url.startsWith('/private/')) window.location.href = `/private/auth/login?next=${back}`;
+                else if (url.startsWith('/api/')) window.location.href = `/api/auth/login?next=${back}`;
+            }
+            return res;
+        };
+        nativeFetch('/api/auth/session')
+            .then((r) => r.json())
+            .then((s) => {
+                if (!s.authenticated) window.location.href = '/api/auth/login?next=' + encodeURIComponent('/editor/');
+            })
+            .catch(() => {});
+        document.getElementById('logout-btn').addEventListener('click', async () => {
+            await nativeFetch('/api/auth/logout', { method: 'POST' }).catch(() => {});
+            await nativeFetch('/private/auth/logout', { method: 'POST' }).catch(() => {});
+            window.location.href = '/';
         });
     }
 
@@ -56,8 +67,10 @@ class MinisEditor {
         return null;
     }
 
+    // Legacy request field kept for the existing call sites; the server authorizes by the
+    // session cookie and ignores it.
     getPassword() {
-        return this.getCookie('beyondme_auth_key') || '';
+        return 'session';
     }
 
     // ── Tabs ──

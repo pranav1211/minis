@@ -76,7 +76,7 @@ import Footer from '../components/Footer.astro';
 
 <script is:inline>
 (function() {
-    var METADATA_URL = 'https://minis.beyondmebtw.com/content/metadata.json';
+    var METADATA_URL = 'https://manage.beyondmebtw.com/api/v1/data/resources/minis.metadata'; // bmb-data via Manage
     var FEATURED_URL = '/data/featured_categories.json';
     var POSTS_PER_PAGE = 4;
 
@@ -117,7 +117,7 @@ import Footer from '../components/Footer.astro';
         try {
             var res = await fetch(METADATA_URL);
             if (!res.ok) throw new Error('Failed to fetch metadata');
-            allPosts = await res.json();
+            allPosts = (await res.json()).data;
         } catch (err) {
             console.error('Error loading metadata:', err);
             try {

@@ -14,6 +14,35 @@ async function readPost(contentDir, id) {
     return { ...data, content: content.trim() };
 }
 
+/** Parse a stored post document (frontmatter + markdown) into post data. */
+function parsePost(raw) {
+    const { data, content } = matter(raw);
+    return { ...data, content: content.trim() };
+}
+
+/** The exact file text for a post (same format as before; bmb-data stores it verbatim). */
+function buildPostMarkdown(postData) {
+    const { id, title, date, time, tags, content } = postData;
+    const featuredExcerpt = generateFeaturedExcerpt(content);
+    const frontmatter = [
+        '---',
+        `id: ${id}`,
+        `title: ${escapeYamlString(title)}`,
+        `date: "${date}"`,
+        `time: "${time}"`,
+        `tags: ${JSON.stringify(tags)}`,
+        `featuredExcerpt: ${escapeYamlString(featuredExcerpt)}`,
+        '---'
+    ].join('\n');
+    return frontmatter + '\n\n' + content + '\n';
+}
+
+/** Local backup copy (content/ folder in this repo). */
+async function writePostFile(contentDir, id, fileContent) {
+    await fs.mkdir(contentDir, { recursive: true });
+    await fs.writeFile(path.join(contentDir, `${id}.md`), fileContent, 'utf8');
+}
+
 async function writePost(contentDir, postData) {
     const { id, title, date, time, tags, content } = postData;
     const featuredExcerpt = generateFeaturedExcerpt(content);
@@ -59,4 +88,4 @@ async function listPosts(contentDir) {
     return posts;
 }
 
-module.exports = { readPost, writePost, deletePost, postExists, listPosts };
+module.exports = { readPost, writePost, deletePost, postExists, listPosts, parsePost, buildPostMarkdown, writePostFile };

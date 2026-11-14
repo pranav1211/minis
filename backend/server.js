@@ -1,14 +1,15 @@
 const express = require('express');
 const path = require('path');
 const postsRouter = require('./routes/posts');
+const { authRouter } = require('./lib/auth');
 
 const app = express();
-const PORT = process.env.PORT || 7004;
+const PORT = Number(process.env.PORT || 7104);
 
 // Middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
-app.set('trust proxy', 1);
+app.set('trust proxy', 'loopback'); // only the local nginx may set X-Forwarded-*
 
 // Request logging
 app.use((req, res, next) => {
@@ -20,7 +21,8 @@ app.use((req, res, next) => {
 // Serve editor static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// API routes
+// Editor sign-in ("Sign in with Manage") and the posts API
+app.use('/api/auth', authRouter);
 app.use('/api/posts', postsRouter);
 
 // Serve editor page at root
@@ -37,8 +39,8 @@ app.get('/health', (req, res) => {
     });
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Minis editor server running on port ${PORT}`);
-    console.log(`Editor: http://localhost:${PORT}`);
-    console.log(`API: http://localhost:${PORT}/api/posts`);
+// Loopback only: nginx is the public entry point.
+app.listen(PORT, '127.0.0.1', () => {
+    console.log(`Minis editor server running on 127.0.0.1:${PORT}`);
+    console.log(`Data: ${process.env.MANAGE_API_URL ? 'Manage (bmb-data primary)' : 'Manage NOT configured'}; sign-in ${process.env.MINIS_SESSION_SECRET ? 'configured' : 'NOT configured'}`);
 });
